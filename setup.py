@@ -1,45 +1,38 @@
 #!/usr/bin/env python
 # coding=utf-8
 from setuptools import setup, find_packages
-# http://www.cnblogs.com/UnGeek/p/5922630.html
-# http://blog.konghy.cn/2018/04/29/setup-dot-py/
+
 # python setup.py sdist
 # python setup.py bdist
 # python setup.py bdist_egg
 # python setup.py bdist_wheel
+
 setup(
-    name="TEA",
-    version="0.2.{buildno}",
-    keywords=("environment manager", "environment deploy"),
-    description="Test Environment Agent",
-    long_description="Test Environment Agent",
+    name="PyTestReport",
+    version="0.1.1",
+    keywords=("test report", "python unit testing"),
+    description="The HTML Report for Python unit testing Base on HTMLTestRunner",
+    long_description="The HTML Report for Python unit testing Base on HTMLTestRunner",
     license="GPL V3",
 
-    url="https://git.corpautohome.com/ad-qa/tea",
+    url="https://github.com/five3/PyTestReport",
     author="Xiaowu Chen",
-    author_email="chenxiaowu@autohome.com.cn",
+    author_email="five3@163.com",
 
-    package_dir={'TEA': 'TEA'},         # 指定哪些包的文件被映射到哪个源码包
-    packages=['TEA', 'TEA.deploy', 'TEA.libs', 'TEA.utils'],       # 需要打包的目录。如果多个的话，可以使用find_packages()自动发现
+    package_dir={'pytestreport': 'pytestreport'},         # 指定哪些包的文件被映射到哪个源码包
+    packages=['pytestreport', 'TEA.deploy', 'TEA.libs', 'TEA.utils'],       # 需要打包的目录。如果多个的话，可以使用find_packages()自动发现
     include_package_data=True,
     py_modules=[],          # 需要打包的python文件列表
-    data_files=['TEA/templates/index.html', 'TEA/templates/detail.html'],          # 打包时需要打包的数据文件
+    data_files=['pytestreport/templates/index.html', 'pytestreport/css/default.css', 'pytestreport/js/default.js'],          # 打包时需要打包的数据文件
     platforms="any",
     install_requires=[      # 需要安装的依赖包
-        'paramiko>=2.4.2',
-        'fabric>=2.4.0',
-        'PyYAML>=3.13',
-        'pymongo>=3.7.2',
-        'flask>=1.0.2',
-        'gunicorn>=19.9.0',
-        'gevent>=1.4.0',
-        'apscheduler>=3.5.3'
+        'Flask>=1.0.2'
     ],
     scripts=[],             # 安装时需要执行的脚本列表
     entry_points={
         'console_scripts': [    # 配置生成命令行工具及入口
-            'tea = TEA:main',
-            'tea.web = TEA:web'
+            'PyTestReport = pytestreport:main',
+            'PyTestReport.web = pytestreport:web'
         ]
     },
     classifiers=[           # 程序的所属分类列表
