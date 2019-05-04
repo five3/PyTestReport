@@ -33,19 +33,19 @@ python setup.py install
 PyTestReport可用通过多种方式运行，分别如下：
 ### 单元测试 
 ```python
-from PyTestReport import TestRunner
+from pytestreport import TestRunner
 
 TestRunner(fp, title='单元测试标题', description='单元测试描述', verbosity=2).run(suite)
+```
+
+### lib库引入项目
+```python
+from pytestreport import api
 ```
 
 ### 命令行
 ```bash
 PyTestReport.shell data.json
-```
-
-### lib库引入项目
-```python
-from PyTestReport import api
 ```
 
 ### REST API

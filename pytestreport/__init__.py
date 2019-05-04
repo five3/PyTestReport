@@ -1,9 +1,9 @@
 from .HTMLTestRunner import HTMLTestRunner as TestRunner
 
-__all__ = ['TestRunner', 'main', 'web']
+__all__ = ['TestRunner', 'shell', 'web']
 
 
-def main():
+def shell():
     pass
 
 

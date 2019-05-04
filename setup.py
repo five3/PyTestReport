@@ -20,10 +20,10 @@ setup(
     author_email="five3@163.com",
 
     package_dir={'pytestreport': 'pytestreport'},         # 指定哪些包的文件被映射到哪个源码包
-    packages=['pytestreport', 'TEA.deploy', 'TEA.libs', 'TEA.utils'],       # 需要打包的目录。如果多个的话，可以使用find_packages()自动发现
+    packages=['pytestreport'],       # 需要打包的目录。如果多个的话，可以使用find_packages()自动发现
     include_package_data=True,
     py_modules=[],          # 需要打包的python文件列表
-    data_files=['pytestreport/templates/index.html', 'pytestreport/css/default.css', 'pytestreport/js/default.js'],          # 打包时需要打包的数据文件
+    data_files=['pytestreport/templates/default.html', 'pytestreport/static/css/default.css', 'pytestreport/static/js/default.js'],          # 打包时需要打包的数据文件
     platforms="any",
     install_requires=[      # 需要安装的依赖包
         'Flask>=1.0.2'
@@ -31,7 +31,7 @@ setup(
     scripts=[],             # 安装时需要执行的脚本列表
     entry_points={
         'console_scripts': [    # 配置生成命令行工具及入口
-            'PyTestReport = pytestreport:main',
+            'PyTestReport.shell = pytestreport:shell',
             'PyTestReport.web = pytestreport:web'
         ]
     },
