@@ -28,7 +28,7 @@ setup(
     install_requires=[      # 需要安装的依赖包
         'Flask>=1.0.2'
     ],
-    scripts=[],             # 安装时需要执行的脚本列表
+    scripts=[],             # 安装时复制到PATH路径的脚本文件
     entry_points={
         'console_scripts': [    # 配置生成命令行工具及入口
             'PyTestReport.shell = pytestreport:shell',

@@ -60,7 +60,7 @@ PyTestReport.web 80
 ## 单元测试样例
 ```python
 import unittest
-from PyTestReport import TestRunner
+from pytestreport import TestRunner
 
 class MyTest(unittest.TestCase):
     def testTrue(self):
