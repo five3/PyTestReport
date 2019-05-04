@@ -1,3 +1,4 @@
+
 body        { font-family: verdana, arial, helvetica, sans-serif; font-size: 80%; }
 table       { font-size: 100%; }
 pre         { }
@@ -70,5 +71,4 @@ a.popup_link:hover {
 .testcase   { margin-left: 2em; }
 
 /* -- ending ---------------------------------------------------------------------- */
-#ending {
-}
+#ending {}

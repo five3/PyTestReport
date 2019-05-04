@@ -3,13 +3,14 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <title>测试标题</title>
-    <meta name="generator" content="HTMLTestRunner 0.8.2"/>
+    <meta name="generator" content="PyTestReport 0.1.0"/>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-    
-<style type="text/css" media="screen">
+    <style type="text/css" media="screen">
+        
 body        { font-family: verdana, arial, helvetica, sans-serif; font-size: 80%; }
 table       { font-size: 100%; }
 pre         { }
+
 /* -- heading ---------------------------------------------------------------------- */
 h1 {
 	font-size: 16pt;
@@ -27,6 +28,7 @@ h1 {
     margin-top: 4ex;
     margin-bottom: 6ex;
 }
+
 /* -- css div popup ------------------------------------------------------------------------ */
 a.popup_link {
 }
@@ -46,7 +48,7 @@ a.popup_link:hover {
     font-size: 8pt;
     width: 500px;
 }
-}
+
 /* -- report ------------------------------------------------------------------------ */
 #show_detail_line {
     margin-top: 3ex;
@@ -75,16 +77,16 @@ a.popup_link:hover {
 .errorCase  { color: #c00; font-weight: bold; }
 .hiddenRow  { display: none; }
 .testcase   { margin-left: 2em; }
-/* -- ending ---------------------------------------------------------------------- */
-#ending {
-}
-</style>
 
-</head>
-<body>
-<script language="javascript" type="text/javascript"><!--
+/* -- ending ---------------------------------------------------------------------- */
+#ending {}
+
+    </style>
+    <script language="javascript" type="text/javascript">
+        
 output_list = Array();
 /* level - 0:Summary; 1:Failed; 2:All */
+
 function showCase(level) {
     trs = document.getElementsByTagName("tr");
     for (var i = 0; i < trs.length; i++) {
@@ -108,6 +110,7 @@ function showCase(level) {
         }
     }
 }
+
 function showClassDetail(cid, count) {
     var id_list = Array(count);
     var toHide = 1;
@@ -135,6 +138,7 @@ function showClassDetail(cid, count) {
         }
     }
 }
+
 function showTestDetail(div_id){
     var details_div = document.getElementById(div_id)
     var displayState = details_div.style.display
@@ -153,6 +157,7 @@ function html_escape(s) {
     s = s.replace(/>/g,'&gt;');
     return s;
 }
+
 /* obsoleted by detail in <div>
 function showOutput(id, name) {
     var w = window.open("", //url
@@ -167,87 +172,97 @@ function showOutput(id, name) {
     d.close();
 }
 */
---></script>
-<div class='heading'>
-<h1>测试标题</h1>
-<p class='attribute'><strong>Start Time:</strong> 2019-04-27 21:37:35</p>
-<p class='attribute'><strong>Duration:</strong> 0:00:00.000998</p>
-<p class='attribute'><strong>Status:</strong> Pass 1 Failure 1</p>
 
-<p class='description'>测试描述</p>
+    </script>
+</head>
+<body>
+
+<div class='heading'>
+    <h1>测试标题</h1>
+    <p class='attribute'><strong>开始时间:</strong> 2019-05-03 14:44:19</p>
+    <p class='attribute'><strong>执行耗时:</strong> 0:00:00</p>
+    <p class='attribute'><strong>状态:</strong> Pass 1, Failure 1, Error 0, Skip 0</p>
+    <p class='description'>测试描述</p>
 </div>
 
-
 <p id='show_detail_line'>Show
-<a href='javascript:showCase(0)'>Summary</a>
-<a href='javascript:showCase(1)'>Failed</a>
-<a href='javascript:showCase(2)'>All</a>
+    <a href='javascript:showCase(0)'>Summary</a>
+    <a href='javascript:showCase(1)'>Failed</a>
+    <a href='javascript:showCase(2)'>All</a>
 </p>
+
 <table id='result_table'>
-<colgroup>
-<col align='left' />
-<col align='right' />
-<col align='right' />
-<col align='right' />
-<col align='right' />
-<col align='right' />
-</colgroup>
-<tr id='header_row'>
-    <td>Test Group/Test case</td>
-    <td>Count</td>
-    <td>Pass</td>
-    <td>Fail</td>
-    <td>Error</td>
-    <td>View</td>
-</tr>
-
-<tr class='failClass'>
-    <td>utDemo.UTest</td>
-    <td>2</td>
-    <td>1</td>
-    <td>1</td>
-    <td>0</td>
-    <td><a href="javascript:showClassDetail('c1',2)">Detail</a></td>
-</tr>
-
-<tr id='ft1.1' class='none'>
-    <td class='failCase'><div class='testcase'>testFalse</div></td>
-    <td colspan='5' align='center'>
-    <!--css div popup start-->
-    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_ft1.1')" >
-        fail</a>
-    <div id='div_ft1.1' class="popup_window">
-        <div style='text-align: right; color:red;cursor:pointer'>
-        <a onfocus='this.blur();' onclick="document.getElementById('div_ft1.1').style.display = 'none' " >
-           [x]</a>
-        </div>
-        <pre>
+    <colgroup>
+        <col align='left' />
+        <col align='right' />
+        <col align='right' />
+        <col align='right' />
+        <col align='right' />
+        <col align='right' />
+        <col align='right' />
+    </colgroup>
+    <tr id='header_row'>
+        <td>Test Group/Test case</td>
+        <td>Count</td>
+        <td>Pass</td>
+        <td>Fail</td>
+        <td>Error</td>
+        <td>Skip</td>
+        <td>View</td>
+    </tr>
+    
+    <tr class='failClass'>
+        <td>utDemo.UTest</td>
+        <td>2</td>
+        <td>1</td>
+        <td>1</td>
+        <td>0</td>
+        <td>0</td>
+        <td><a href="javascript:showClassDetail('c1',2)">Detail</a></td>
+    </tr>
         
+            
+                <tr id='ft1.1' class='none'>
+                    <td class='failCase'><div class='testcase'>testFalse</div></td>
+                    <td colspan='6' align='center'>
+                    <!--css div popup start-->
+                    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_ft1.1')" >
+                        fail</a>
+                    <div id='div_ft1.1' class="popup_window">
+                        <div style='text-align: right; color:red;cursor:pointer'>
+                        <a onfocus='this.blur();' onclick="document.getElementById('div_ft1.1').style.display = 'none';" >
+                           [x]</a>
+                        </div>
+                        <pre style="text-align: center;">
 ft1.1: Traceback (most recent call last):
   File "D:\git\PyTestReport\test\utDemo.py", line 15, in testFalse
     self.assertFalse(True)
 AssertionError: True is not false
 
-
-        </pre>
-    </div>
-    <!--css div popup end-->
-    </td>
-</tr>
-
-<tr id='pt1.2' class='hiddenRow'>
-    <td class='none'><div class='testcase'>testTrue</div></td>
-    <td colspan='5' align='center'>pass</td>
-</tr>
-
-<tr id='total_row'>
-    <td>Total</td>
-    <td>2</td>
-    <td>1</td>
-    <td>1</td>
-    <td>0</td>
-    <td>&nbsp;</td>
-</tr>
+                        </pre>
+                    </div>
+                    <!--css div popup end-->
+                    </td>
+                </tr>
+            
+        
+            
+                <tr id='pt1.2' class='hiddenRow'>
+                    <td class='none'><div class='testcase'>testTrue</div></td>
+                    <td colspan='6' align='center'>pass</td>
+                </tr>
+            
+        
+    
+    <tr id='total_row'>
+        <td>Total</td>
+        <td>2</td>
+        <td>1</td>
+        <td>1</td>
+        <td>0</td>
+        <td>0</td>
+        <td>&nbsp;</td>
+    </tr>
 </table>
 
 <div id='ending'>&nbsp;</div>

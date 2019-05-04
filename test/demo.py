@@ -1,3 +1,4 @@
+import json
 import unittest
 
 from utDemo import UTest
@@ -10,4 +11,4 @@ if __name__ == '__main__':
     with open('UTReport.html', 'wb') as fp:
         runner = TestRunner(fp, title='测试标题', description='测试描述', verbosity=2)
         result = runner.run(suite)
-        print(result)
+        print(json.dumps(result, ensure_ascii=False))
