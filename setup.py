@@ -36,9 +36,9 @@ setup(
         ]
     },
     classifiers=[           # 程序的所属分类列表
-        "Development Status :: 3 - Alpha",
-        "Topic :: Utilities",
-        "License :: OSI Approved :: GNU General Public License (GPL)",
+        "Programming Language :: Python :: 3",
+        "License :: OSI Approved :: MIT License",
+        "Operating System :: OS Independent",
     ],
     zip_safe=False
 )
