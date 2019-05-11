@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>{{ title }}</title>
+    <meta name="generator" content="legency"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <style type="text/css" media="screen">
+        {{ stylesheet }}
+    </style>
+    <script language="javascript" type="text/javascript">
+        {{ javascript }}
+    </script>
+</head>
+<body>
+
+<div class='heading'>
+    <h1>{{ title }}</h1>
+    <p class='attribute'><strong>开始时间:</strong> {{ report_summary.start_time }}</p>
+    <p class='attribute'><strong>执行耗时:</strong> {{ report_summary.duration }}</p>
+    <p class='attribute'><strong>状态:</strong> {{ report_summary.status }}</p>
+    <p class='description'>{{ description }}</p>
+</div>
+
+<p id='show_detail_line'>Show
+    <a href='javascript:showCase(0)'>Summary</a>
+    <a href='javascript:showCase(1)'>Failed</a>
+    <a href='javascript:showCase(2)'>All</a>
+</p>
+
+<table id='result_table'>
+    <colgroup>
+        <col align='left' />
+        <col align='right' />
+        <col align='right' />
+        <col align='right' />
+        <col align='right' />
+        <col align='right' />
+        <col align='right' />
+    </colgroup>
+    <tr id='header_row'>
+        <td>Test Group/Test case</td>
+        <td>Count</td>
+        <td>Pass</td>
+        <td>Fail</td>
+        <td>Error</td>
+        <td>Skip</td>
+        <td>View</td>
+    </tr>
+    {% for test in report_detail.tests %}
+    <tr class='{{ test.summary.style }}'>
+        <td>{{ test.summary.desc }}</td>
+        <td>{{ test.summary.count }}</td>
+        <td>{{ test.summary.pass }}</td>
+        <td>{{ test.summary.fail }}</td>
+        <td>{{ test.summary.error }}</td>
+        <td>{{ test.summary.skip }}</td>
+        <td><a href="javascript:showClassDetail('{{ test.summary.cid }}',{{ test.summary.count }})">Detail</a></td>
+    </tr>
+        {% for detail in test.detail %}
+            {% if detail.has_output %}
+                <tr id='{{ detail.tid }}' class='{{ detail.class }}'>
+                    <td class='{{ detail.style }}'><div class='testcase'>{{ detail.desc }}</div></td>
+                    <td colspan='6' align='center'>
+                    <!--css div popup start-->
+                    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_{{ detail.tid }}')" >
+                        {{ detail.status }}</a>
+                    <div id='div_{{ detail.tid }}' class="popup_window">
+                        <div style='text-align: right; color:red;cursor:pointer'>
+                        <a onfocus='this.blur();' onclick="document.getElementById('div_{{ detail.tid }}').style.display = 'none';" >
+                           [x]</a>
+                        </div>
+                        <pre style="text-align: center;">
+{{ detail.tid }}: {{ detail.output }}
+                        </pre>
+                    </div>
+                    <!--css div popup end-->
+                    </td>
+                </tr>
+            {% else %}
+                <tr id='{{ detail.tid }}' class='{{ detail.class }}'>
+                    <td class='{{ detail.style }}'><div class='testcase'>{{ detail.desc }}</div></td>
+                    <td colspan='6' align='center'>{{ detail.status }}</td>
+                </tr>
+            {% endif %}
+        {% endfor %}
+    {% endfor %}
+    <tr id='total_row'>
+        <td>Total</td>
+        <td>{{ report_detail.count }}</td>
+        <td>{{ report_detail.pass }}</td>
+        <td>{{ report_detail.fail }}</td>
+        <td>{{ report_detail.error }}</td>
+        <td>{{ report_detail.skip }}</td>
+        <td>&nbsp;</td>
+    </tr>
+</table>
+
+<div id='ending'>&nbsp;</div>
+</body>
+</html>

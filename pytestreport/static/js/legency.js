@@ -1,35 +1,27 @@
 
 output_list = Array();
-/* level - 0:Summary; 1:Failed; 2:Skip; 3:All */
+/* level - 0:Summary; 1:Failed; 2:All */
 
 function showCase(level) {
     trs = document.getElementsByTagName("tr");
     for (var i = 0; i < trs.length; i++) {
         tr = trs[i];
         id = tr.id;
-
-        if (level === 0 && tr.getAttribute('type') === 'case') {
-            tr.className = 'hiddenRow';
-        } else if (level === 1) {
-            if (id.substr(0,2) === 'ft') {
-                tr.className = '';
-            } else if (tr.getAttribute('type') === 'case') {
+        if (id.substr(0,2) == 'ft') {
+            if (level < 1) {
                 tr.className = 'hiddenRow';
             }
-        } else if (level === 2) {
-            if (id.substr(0,2) === 'et') {
+            else {
                 tr.className = '';
-            } else if (tr.getAttribute('type') === 'case') {
+            }
+        }
+        if (id.substr(0,2) == 'pt') {
+            if (level > 1) {
+                tr.className = '';
+            }
+            else {
                 tr.className = 'hiddenRow';
             }
-        } else if (level === 3) {
-            if (id.substr(0,2) === 'st') {
-                tr.className = '';
-            } else if (tr.getAttribute('type') === 'case') {
-                tr.className = 'hiddenRow';
-            }
-        } else if (level === 4 && tr.getAttribute('type') === 'case') {
-            tr.className = '';
         }
     }
 }
@@ -81,4 +73,17 @@ function html_escape(s) {
     return s;
 }
 
-
+/* obsoleted by detail in <div>
+function showOutput(id, name) {
+    var w = window.open("", //url
+                    name,
+                    "resizable,scrollbars,status,width=800,height=450");
+    d = w.document;
+    d.write("<pre>");
+    d.write(html_escape(output_list[id]));
+    d.write("\n");
+    d.write("<a href='javascript:window.close()'>close</a>\n");
+    d.write("</pre>\n");
+    d.close();
+}
+*/

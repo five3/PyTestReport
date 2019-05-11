@@ -13,3 +13,10 @@ class UTest(unittest.TestCase):
 
     def testFalse(self):
         self.assertFalse(True)
+
+    def testError(self):
+        1 / 0
+        self.assertFalse(True)
+
+    def testSkip(self):
+        self.skipTest("Skip Test")

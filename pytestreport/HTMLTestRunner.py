@@ -298,8 +298,12 @@ class HTMLTestRunner(TemplateMixin):
     def get_report_summary(self, result):
         start_time = str(self.start_time)[:19]
         duration = str(self.duration)
-        status = f'Pass {result.success_count}, Failure {result.failure_count}, Error {result.error_count}, Skip {result.skip_count}'
-
+        status = {
+            'pass': result.success_count,
+            'fail': result.failure_count,
+            'error': result.error_count,
+            'skip': result.skip_count
+        }
         return {
             'start_time': start_time,
             'duration': duration,
@@ -371,7 +375,7 @@ class HTMLTestRunner(TemplateMixin):
     def _generate_report_test(self, cid, tid, n, t, o, e):
         # e.g. 'pt1.1', 'ft1.1', etc
         has_output = bool(o or e)
-        tid = (n == 0 and 'p' or 'f') + 't%s.%s' % (cid + 1, tid + 1)
+        tid = self.STATUS[n][0] + 't%s.%s' % (cid + 1, tid + 1)
         name = t.id().split('.')[-1]
         doc = t.shortDescription() or ""
         desc = doc and ('%s: %s' % (name, doc)) or name
@@ -382,11 +386,10 @@ class HTMLTestRunner(TemplateMixin):
         return {
             'has_output': has_output,
             'tid': tid,
-            'class': (n == 0 and 'hiddenRow' or 'none'),
-            'style': n == 2 and 'errorCase' or (n == 1 and 'failCase' or 'none'),
             'desc': desc,
             'output': saxutils.escape(str(uo) + str(ue)),
             'status': self.STATUS[n],
+            'status_code': n
         }
 
     @staticmethod

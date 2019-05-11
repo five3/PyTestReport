@@ -1,101 +1,218 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-    <title>{{ title }}</title>
-    <meta name="generator" content="{{ generator }}"/>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-    <style type="text/css" media="screen">
-        {{ stylesheet }}
-    </style>
-    <script language="javascript" type="text/javascript">
-        {{ javascript }}
-    </script>
-</head>
-<body>
+<!doctype html>
+<html lang="en">
+    <head>
+        <title>{{ title }}</title>
+        <meta name="generator" content="{{ generator }}"/>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 
-<div class='heading'>
-    <h1>{{ title }}</h1>
-    <p class='attribute'><strong>开始时间:</strong> {{ report_summary.start_time }}</p>
-    <p class='attribute'><strong>执行耗时:</strong> {{ report_summary.duration }}</p>
-    <p class='attribute'><strong>状态:</strong> {{ report_summary.status }}</p>
-    <p class='description'>{{ description }}</p>
-</div>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-<p id='show_detail_line'>Show
-    <a href='javascript:showCase(0)'>Summary</a>
-    <a href='javascript:showCase(1)'>Failed</a>
-    <a href='javascript:showCase(2)'>All</a>
-</p>
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <!-- Chart CSS -->
+        <link href="https://cdn.bootcss.com/Chart.js/2.8.0-rc.1/Chart.min.css" rel="stylesheet">
+        <style type="text/css" media="screen">
+            {{ stylesheet }}
+        </style>
 
-<table id='result_table'>
-    <colgroup>
-        <col align='left' />
-        <col align='right' />
-        <col align='right' />
-        <col align='right' />
-        <col align='right' />
-        <col align='right' />
-        <col align='right' />
-    </colgroup>
-    <tr id='header_row'>
-        <td>Test Group/Test case</td>
-        <td>Count</td>
-        <td>Pass</td>
-        <td>Fail</td>
-        <td>Error</td>
-        <td>Skip</td>
-        <td>View</td>
-    </tr>
-    {% for test in report_detail.tests %}
-    <tr class='{{ test.summary.style }}'>
-        <td>{{ test.summary.desc }}</td>
-        <td>{{ test.summary.count }}</td>
-        <td>{{ test.summary.pass }}</td>
-        <td>{{ test.summary.fail }}</td>
-        <td>{{ test.summary.error }}</td>
-        <td>{{ test.summary.skip }}</td>
-        <td><a href="javascript:showClassDetail('{{ test.summary.cid }}',{{ test.summary.count }})">Detail</a></td>
-    </tr>
-        {% for detail in test.detail %}
-            {% if detail.has_output %}
-                <tr id='{{ detail.tid }}' class='{{ detail.class }}'>
-                    <td class='{{ detail.style }}'><div class='testcase'>{{ detail.desc }}</div></td>
-                    <td colspan='6' align='center'>
-                    <!--css div popup start-->
-                    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_{{ detail.tid }}')" >
-                        {{ detail.status }}</a>
-                    <div id='div_{{ detail.tid }}' class="popup_window">
-                        <div style='text-align: right; color:red;cursor:pointer'>
-                        <a onfocus='this.blur();' onclick="document.getElementById('div_{{ detail.tid }}').style.display = 'none';" >
-                           [x]</a>
-                        </div>
-                        <pre style="text-align: center;">
-{{ detail.tid }}: {{ detail.output }}
-                        </pre>
+        <script src="https://cdn.bootcss.com/Chart.js/2.8.0-rc.1/Chart.min.js"></script>
+    </head>
+    <body>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col">
+                <div class='heading'>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-5">
+                <div class='heading'>
+                    <h2>{{ title }}</h2><hr/>
+                    {% if description %}
+                        <p class='description'>{{ description }}</p>
+                        <hr/>
+                    {% endif %}
+                    <div>
+                        <p class='attribute'><strong>开始时间:</strong> {{ report_summary.start_time }}</p>
+                        <p class='attribute'><strong>执行耗时:</strong> {{ report_summary.duration }}</p>
+                        <p class='attribute'><strong>状态:</strong>
+                            <span class="badge badge-success" style="background-color: rgb(0 255 127);">&nbsp;通过: {{ report_summary.status.pass }}&nbsp;</span>
+                            <span class="badge badge-danger" style="background-color: rgb(255, 99, 132);">&nbsp;失败：{{ report_summary.status.fail }}&nbsp;</span>
+                            <span class="badge badge-primary" style="background-color: rgb(54, 162, 235);">&nbsp;错误：{{ report_summary.status.error }}&nbsp;</span>
+                            <span class="badge badge-secondary" style="background-color: rgb(201, 203, 207);">&nbsp;跳过：{{ report_summary.status.skip }}&nbsp;</span>
+                        </p>
                     </div>
-                    <!--css div popup end-->
-                    </td>
-                </tr>
-            {% else %}
-                <tr id='{{ detail.tid }}' class='{{ detail.class }}'>
-                    <td class='{{ detail.style }}'><div class='testcase'>{{ detail.desc }}</div></td>
-                    <td colspan='6' align='center'>{{ detail.status }}</td>
-                </tr>
-            {% endif %}
-        {% endfor %}
-    {% endfor %}
-    <tr id='total_row'>
-        <td>Total</td>
-        <td>{{ report_detail.count }}</td>
-        <td>{{ report_detail.pass }}</td>
-        <td>{{ report_detail.fail }}</td>
-        <td>{{ report_detail.error }}</td>
-        <td>{{ report_detail.skip }}</td>
-        <td>&nbsp;</td>
-    </tr>
-</table>
+                </div>
+            </div>
+            <div class="col">
+                <div style="width: 30%;">
+                    <canvas id="chart-area" width="200" height="200"></canvas>
+                </div>
+            </div>
+        </div>
 
-<div id='ending'>&nbsp;</div>
-</body>
+        <div class="row">
+            <div class="col">
+                <hr/>
+                <p id='show_detail_line'>显示：
+                    <a href='javascript:showCase(0)'>概要</a>
+                    <a href='javascript:showCase(1)'>失败</a>
+                    <a href='javascript:showCase(2)'>错误</a>
+                    <a href='javascript:showCase(3)'>跳过</a>
+                    <a href='javascript:showCase(4)'>全部</a>
+                </p>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col">
+                <table id='result_table'>
+                    <colgroup>
+                        <col align='left' />
+                        <col align='right' />
+                        <col align='right' />
+                        <col align='right' />
+                        <col align='right' />
+                        <col align='right' />
+                        <col align='right' />
+                    </colgroup>
+                    <tr id='header_row'>
+                        <td>测试套件/用例</td>
+                        <td>用例总数</td>
+                        <td>通过</td>
+                        <td>失败</td>
+                        <td>错误</td>
+                        <td>跳过</td>
+                        <td>查看</td>
+                    </tr>
+                    {% for test in report_detail.tests %}
+                    <tr class='{{ test.summary.style }}'>
+                        <td>{{ test.summary.desc }}</td>
+                        <td>{{ test.summary.count }}</td>
+                        <td>{{ test.summary.pass }}</td>
+                        <td>{{ test.summary.fail }}</td>
+                        <td>{{ test.summary.error }}</td>
+                        <td>{{ test.summary.skip }}</td>
+                        <td><a href="javascript:showClassDetail('{{ test.summary.cid }}',{{ test.summary.count }})">查看详情</a></td>
+                    </tr>
+                        {% for detail in test.detail %}
+                            {% if detail.has_output %}
+                                <tr id='{{ detail.tid }}' class='{% if detail.status_code==0 %}hiddenRow{% endif %}' type="case">
+                                    <td class='{{ detail.status }}Case'><div class='testcase'>{{ detail.desc }}</div></td>
+                                    <td colspan='6' align='center'>
+                                    <!--css div popup start-->
+                                    <a class="popup_link {{ detail.status }}Case" onfocus='this.blur();' href="javascript:showTestDetail('div_{{ detail.tid }}')" >
+                                        {{ detail.status | upper }}</a>
+                                    <div id='div_{{ detail.tid }}' class="popup_window">
+                                        <div style='text-align: right; color:red;cursor:pointer'>
+                                        <a onfocus='this.blur();' onclick="document.getElementById('div_{{ detail.tid }}').style.display = 'none';" >
+                                           [x]</a>
+                                        </div>
+                                        <pre style="text-align: center;">
+{{ detail.tid }}: {{ detail.output }}
+                                        </pre>
+                                    </div>
+                                    <!--css div popup end-->
+                                    </td>
+                                </tr>
+                            {% else %}
+                                <tr id='{{ detail.tid }}' class='{% if detail.status_code==0 %}hiddenRow{% endif %}' type="case">
+                                    <td class='{{ detail.status }}Case'><div class='testcase'>{{ detail.desc }}</div></td>
+                                    <td class='{{ detail.status }}Case' colspan='6' align='center'>{{ detail.status | upper }}</td>
+                                </tr>
+                            {% endif %}
+                        {% endfor %}
+                    {% endfor %}
+                    <tr id='total_row'>
+                        <td>总计</td>
+                        <td>{{ report_detail.count }}</td>
+                        <td>{{ report_detail.pass }}</td>
+                        <td>{{ report_detail.fail }}</td>
+                        <td>{{ report_detail.error }}</td>
+                        <td>{{ report_detail.skip }}</td>
+                        <td>&nbsp;</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col">
+                <div id='ending'></div>
+            </div>
+        </div>
+        <!-- Optional JavaScript -->
+        <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+        <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+        <script src="https://cdn.bootcss.com/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+        <script src="https://cdn.bootcss.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+        <script language="javascript" type="text/javascript">
+            {{ javascript }}
+            (function() {
+                window.chartColors = {
+                    red: 'rgb(255, 99, 132)',
+                    orange: 'rgb(255, 159, 64)',
+                    yellow: 'rgb(255, 205, 86)',
+                    green: 'rgb(0 255 127)',
+                    blue: 'rgb(54, 162, 235)',
+                    purple: 'rgb(153, 102, 255)',
+                    grey: 'rgb(201, 203, 207)'
+                };
+                var config = {
+                    type: 'doughnut',
+                    data: {
+                        datasets: [{
+                            data: [
+                                {{ report_summary.status.pass }},
+                                {{ report_summary.status.fail }},
+                                {{ report_summary.status.error }},
+                                {{ report_summary.status.skip }},
+                            ],
+                            backgroundColor: [
+                                window.chartColors.green,
+                                window.chartColors.red,
+                                window.chartColors.blue,
+                                window.chartColors.grey
+                            ],
+                            hoverBackgroundColor: [
+                                window.chartColors.green,
+                                window.chartColors.red,
+                                window.chartColors.blue,
+                                window.chartColors.grey
+                            ],
+                            label: 'Dataset 1'
+                        }],
+                        labels: [
+                            '通过',
+                            '失败',
+                            '错误',
+                            '跳过',
+                        ]
+                    },
+                    options: {
+                        responsive: true,
+                        legend: {
+                            position: 'top',
+                        },
+                        title: {
+                            display: true,
+                            text: '测试结果占比'
+                        },
+                        animation: {
+                            animateScale: true,
+                            animateRotate: true
+                        }
+                    }
+                };
+                window.onload = function() {
+                    var ctx = document.getElementById('chart-area').getContext('2d');
+                    window.myDoughnut = new Chart(ctx, config);
+                };
+            })();
+        </script>
+    </div>
+    </body>
 </html>
