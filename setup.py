@@ -1,15 +1,17 @@
 #!/usr/bin/env python
 # coding=utf-8
 from setuptools import setup, find_packages
+from pytestreport import HTMLTestRunner
 
 # python setup.py sdist
 # python setup.py bdist
 # python setup.py bdist_egg
 # python setup.py bdist_wheel
+# twine upload dist/*
 
 setup(
     name="PyTestReport",
-    version="0.1.2",
+    version=HTMLTestRunner.__version__,
     keywords=("test report", "python unit testing"),
     description="The HTML Report for Python unit testing Base on HTMLTestRunner",
     long_description="The HTML Report for Python unit testing Base on HTMLTestRunner",
@@ -23,7 +25,14 @@ setup(
     packages=['pytestreport'],       # 需要打包的目录。如果多个的话，可以使用find_packages()自动发现
     include_package_data=True,
     py_modules=[],          # 需要打包的python文件列表
-    data_files=['pytestreport/templates/default.html', 'pytestreport/static/css/default.css', 'pytestreport/static/js/default.js'],          # 打包时需要打包的数据文件
+    data_files=[            # 打包时需要打包的数据文件
+        'pytestreport/templates/default.html',
+        'pytestreport/static/css/default.css',
+        'pytestreport/static/js/default.js',
+        'pytestreport/templates/legency.html',
+        'pytestreport/static/css/legency.css',
+        'pytestreport/static/js/legency.js'
+    ],
     platforms="any",
     install_requires=[      # 需要安装的依赖包
         'Flask>=1.0.2'

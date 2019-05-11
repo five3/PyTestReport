@@ -2,7 +2,7 @@
 <html lang="en">
     <head>
         <title>默认主题</title>
-        <meta name="generator" content="PyTestReport 0.1.0"/>
+        <meta name="generator" content="PyTestReport 0.1.2"/>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 
         <!-- Required meta tags -->
@@ -105,13 +105,13 @@ a.popup_link:hover {
                         <hr/>
                     
                     <div>
-                        <p class='attribute'><strong>开始时间:</strong> 2019-05-11 23:34:23</p>
-                        <p class='attribute'><strong>执行耗时:</strong> 0:00:00.001000</p>
+                        <p class='attribute'><strong>开始时间:</strong> 2019-05-12 00:34:13</p>
+                        <p class='attribute'><strong>执行耗时:</strong> 0:00:00.002000</p>
                         <p class='attribute'><strong>状态:</strong>
-                            <span class="badge badge-success" style="background-color: rgb(0 255 127);">&nbsp;通过: 1&nbsp;</span>
-                            <span class="badge badge-danger" style="background-color: rgb(255, 99, 132);">&nbsp;失败：1&nbsp;</span>
-                            <span class="badge badge-primary" style="background-color: rgb(54, 162, 235);">&nbsp;错误：1&nbsp;</span>
-                            <span class="badge badge-secondary" style="background-color: rgb(201, 203, 207);">&nbsp;跳过：1&nbsp;</span>
+                            <span class="badge badge-success" style="background-color: rgb(0 255 127);">&nbsp;通过: 2&nbsp;</span>
+                            <span class="badge badge-danger" style="background-color: rgb(255, 99, 132);">&nbsp;失败：2&nbsp;</span>
+                            <span class="badge badge-primary" style="background-color: rgb(54, 162, 235);">&nbsp;错误：2&nbsp;</span>
+                            <span class="badge badge-secondary" style="background-color: rgb(201, 203, 207);">&nbsp;跳过：2&nbsp;</span>
                         </p>
                     </div>
                 </div>
@@ -158,18 +158,18 @@ a.popup_link:hover {
                         <td>查看</td>
                     </tr>
                     
-                    <tr class='errorClass'>
+                    <tr class='errorClass' type="suite" id="c1">
                         <td>utDemo.UTest</td>
-                        <td>3</td>
+                        <td>4</td>
                         <td>1</td>
                         <td>1</td>
                         <td>1</td>
                         <td>1</td>
-                        <td><a href="javascript:showClassDetail('c1',3)">查看详情</a></td>
+                        <td><a href="javascript:showClassDetail('c1',4)">查看详情</a></td>
                     </tr>
                         
                             
-                                <tr id='et1.1' class='' type="case">
+                                <tr id='et1.1' cid="c1" class='' type="case">
                                     <td class='errorCase'><div class='testcase'>testError</div></td>
                                     <td colspan='6' align='center'>
                                     <!--css div popup start-->
@@ -194,7 +194,7 @@ ZeroDivisionError: division by zero
                             
                         
                             
-                                <tr id='ft1.2' class='' type="case">
+                                <tr id='ft1.2' cid="c1" class='' type="case">
                                     <td class='failCase'><div class='testcase'>testFalse</div></td>
                                     <td colspan='6' align='center'>
                                     <!--css div popup start-->
@@ -219,7 +219,7 @@ AssertionError: True is not false
                             
                         
                             
-                                <tr id='st1.3' class='' type="case">
+                                <tr id='st1.3' cid="c1" class='' type="case">
                                     <td class='skipCase'><div class='testcase'>testSkip</div></td>
                                     <td colspan='6' align='center'>
                                     <!--css div popup start-->
@@ -240,20 +240,142 @@ st1.3: Skip Test
                             
                         
                             
-                                <tr id='pt1.4' class='hiddenRow' type="case">
+                                <tr id='pt1.4' cid="c1" class='hiddenRow' type="case">
                                     <td class='passCase'><div class='testcase'>testTrue</div></td>
                                     <td class='passCase' colspan='6' align='center'>PASS</td>
                                 </tr>
                             
                         
                     
+                    <tr class='errorClass' type="suite" id="c2">
+                        <td>utDemo.UTestError</td>
+                        <td>1</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>1</td>
+                        <td>0</td>
+                        <td><a href="javascript:showClassDetail('c2',1)">查看详情</a></td>
+                    </tr>
+                        
+                            
+                                <tr id='et2.1' cid="c2" class='' type="case">
+                                    <td class='errorCase'><div class='testcase'>testError</div></td>
+                                    <td colspan='6' align='center'>
+                                    <!--css div popup start-->
+                                    <a class="popup_link errorCase" onfocus='this.blur();' href="javascript:showTestDetail('div_et2.1')" >
+                                        ERROR</a>
+                                    <div id='div_et2.1' class="popup_window">
+                                        <div style='text-align: right; color:red;cursor:pointer'>
+                                        <a onfocus='this.blur();' onclick="document.getElementById('div_et2.1').style.display = 'none';" >
+                                           [x]</a>
+                                        </div>
+                                        <pre style="text-align: center;">
+et2.1: Traceback (most recent call last):
+  File "D:\git\PyTestReport\test\utDemo.py", line 38, in testError
+    1 / 0
+ZeroDivisionError: division by zero
+
+                                        </pre>
+                                    </div>
+                                    <!--css div popup end-->
+                                    </td>
+                                </tr>
+                            
+                        
+                    
+                    <tr class='failClass' type="suite" id="c3">
+                        <td>utDemo.UTestFail</td>
+                        <td>1</td>
+                        <td>0</td>
+                        <td>1</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td><a href="javascript:showClassDetail('c3',1)">查看详情</a></td>
+                    </tr>
+                        
+                            
+                                <tr id='ft3.1' cid="c3" class='' type="case">
+                                    <td class='failCase'><div class='testcase'>testFalse</div></td>
+                                    <td colspan='6' align='center'>
+                                    <!--css div popup start-->
+                                    <a class="popup_link failCase" onfocus='this.blur();' href="javascript:showTestDetail('div_ft3.1')" >
+                                        FAIL</a>
+                                    <div id='div_ft3.1' class="popup_window">
+                                        <div style='text-align: right; color:red;cursor:pointer'>
+                                        <a onfocus='this.blur();' onclick="document.getElementById('div_ft3.1').style.display = 'none';" >
+                                           [x]</a>
+                                        </div>
+                                        <pre style="text-align: center;">
+ft3.1: Traceback (most recent call last):
+  File "D:\git\PyTestReport\test\utDemo.py", line 33, in testFalse
+    self.assertFalse(True)
+AssertionError: True is not false
+
+                                        </pre>
+                                    </div>
+                                    <!--css div popup end-->
+                                    </td>
+                                </tr>
+                            
+                        
+                    
+                    <tr class='passClass' type="suite" id="c4">
+                        <td>utDemo.UTestPass</td>
+                        <td>1</td>
+                        <td>1</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td><a href="javascript:showClassDetail('c4',1)">查看详情</a></td>
+                    </tr>
+                        
+                            
+                                <tr id='pt4.1' cid="c4" class='hiddenRow' type="case">
+                                    <td class='passCase'><div class='testcase'>testTrue</div></td>
+                                    <td class='passCase' colspan='6' align='center'>PASS</td>
+                                </tr>
+                            
+                        
+                    
+                    <tr class='skipClass' type="suite" id="c5">
+                        <td>utDemo.UTestSkip</td>
+                        <td>1</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>1</td>
+                        <td><a href="javascript:showClassDetail('c5',1)">查看详情</a></td>
+                    </tr>
+                        
+                            
+                                <tr id='st5.1' cid="c5" class='' type="case">
+                                    <td class='skipCase'><div class='testcase'>testSkip</div></td>
+                                    <td colspan='6' align='center'>
+                                    <!--css div popup start-->
+                                    <a class="popup_link skipCase" onfocus='this.blur();' href="javascript:showTestDetail('div_st5.1')" >
+                                        SKIP</a>
+                                    <div id='div_st5.1' class="popup_window">
+                                        <div style='text-align: right; color:red;cursor:pointer'>
+                                        <a onfocus='this.blur();' onclick="document.getElementById('div_st5.1').style.display = 'none';" >
+                                           [x]</a>
+                                        </div>
+                                        <pre style="text-align: center;">
+st5.1: Skip Test
+                                        </pre>
+                                    </div>
+                                    <!--css div popup end-->
+                                    </td>
+                                </tr>
+                            
+                        
+                    
                     <tr id='total_row'>
                         <td>总计</td>
-                        <td>3</td>
-                        <td>1</td>
-                        <td>1</td>
-                        <td>1</td>
-                        <td>1</td>
+                        <td>6</td>
+                        <td>2</td>
+                        <td>2</td>
+                        <td>2</td>
+                        <td>2</td>
                         <td>&nbsp;</td>
                     </tr>
                 </table>
@@ -308,29 +430,19 @@ function showCase(level) {
 }
 
 function showClassDetail(cid, count) {
-    var id_list = Array(count);
+    var tr_list = document.querySelectorAll('tr[cid='+cid+']');
     var toHide = 1;
+
     for (var i = 0; i < count; i++) {
-        tid0 = 't' + cid.substr(1) + '.' + (i+1);
-        tid = 'f' + tid0;
-        tr = document.getElementById(tid);
-        if (!tr) {
-            tid = 'p' + tid0;
-            tr = document.getElementById(tid);
-        }
-        id_list[i] = tid;
-        if (tr.className) {
+        if (tr_list[i].className) {
             toHide = 0;
         }
     }
     for (var i = 0; i < count; i++) {
-        tid = id_list[i];
         if (toHide) {
-            document.getElementById('div_'+tid).style.display = 'none'
-            document.getElementById(tid).className = 'hiddenRow';
-        }
-        else {
-            document.getElementById(tid).className = '';
+            tr_list[i].className = 'hiddenRow';
+        } else {
+            tr_list[i].className = '';
         }
     }
 }
@@ -371,10 +483,10 @@ function html_escape(s) {
                     data: {
                         datasets: [{
                             data: [
-                                1,
-                                1,
-                                1,
-                                1,
+                                2,
+                                2,
+                                2,
+                                2,
                             ],
                             backgroundColor: [
                                 window.chartColors.green,

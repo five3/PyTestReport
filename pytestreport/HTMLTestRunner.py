@@ -52,7 +52,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 __original_author__ = "Wai Yip Tung"
 __update_author__ = "Xiaowu Chen"
-__version__ = "0.1.0"
+__version__ = "0.1.2"
 
 """
 0.1.0:
@@ -60,6 +60,8 @@ use Jinjia2 as template engine;
 html、style、js separate as standalone, and can be recover by specified a file;
 can be install as Python Lib, and setup with `pip`;
 can be use in command、as lib、as webservice、with unittest;
+0.1.2:
+modify the default theme
 """
 
 import datetime
@@ -347,14 +349,14 @@ class HTMLTestRunner(TemplateMixin):
 
             test = {
                 'summary': {
-                    'style': ne > 0 and 'errorClass' or nf > 0 and 'failClass' or 'passClass',
                     'desc': desc,
-                    'count': np + nf + ne,
+                    'count': np + nf + ne + ns,
                     'pass': np,
                     'fail': nf,
                     'error': ne,
                     'skip': ns,
                     'cid': 'c%s' % (cid + 1),
+                    'status': (ne and self.STATUS[2]) or (nf and self.STATUS[1]) or (ns and self.STATUS[3]) or self.STATUS[0]
                 }, 'detail': []
             }
 

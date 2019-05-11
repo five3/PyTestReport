@@ -35,29 +35,19 @@ function showCase(level) {
 }
 
 function showClassDetail(cid, count) {
-    var id_list = Array(count);
+    var tr_list = document.querySelectorAll('tr[cid='+cid+']');
     var toHide = 1;
+
     for (var i = 0; i < count; i++) {
-        tid0 = 't' + cid.substr(1) + '.' + (i+1);
-        tid = 'f' + tid0;
-        tr = document.getElementById(tid);
-        if (!tr) {
-            tid = 'p' + tid0;
-            tr = document.getElementById(tid);
-        }
-        id_list[i] = tid;
-        if (tr.className) {
+        if (tr_list[i].className) {
             toHide = 0;
         }
     }
     for (var i = 0; i < count; i++) {
-        tid = id_list[i];
         if (toHide) {
-            document.getElementById('div_'+tid).style.display = 'none'
-            document.getElementById(tid).className = 'hiddenRow';
-        }
-        else {
-            document.getElementById(tid).className = '';
+            tr_list[i].className = 'hiddenRow';
+        } else {
+            tr_list[i].className = '';
         }
     }
 }

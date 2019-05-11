@@ -89,7 +89,7 @@
                         <td>查看</td>
                     </tr>
                     {% for test in report_detail.tests %}
-                    <tr class='{{ test.summary.style }}'>
+                    <tr class='{{ test.summary.status }}Class' type="suite" id="{{ test.summary.cid }}">
                         <td>{{ test.summary.desc }}</td>
                         <td>{{ test.summary.count }}</td>
                         <td>{{ test.summary.pass }}</td>
@@ -100,7 +100,7 @@
                     </tr>
                         {% for detail in test.detail %}
                             {% if detail.has_output %}
-                                <tr id='{{ detail.tid }}' class='{% if detail.status_code==0 %}hiddenRow{% endif %}' type="case">
+                                <tr id='{{ detail.tid }}' cid="{{ test.summary.cid }}" class='{% if detail.status_code==0 %}hiddenRow{% endif %}' type="case">
                                     <td class='{{ detail.status }}Case'><div class='testcase'>{{ detail.desc }}</div></td>
                                     <td colspan='6' align='center'>
                                     <!--css div popup start-->
@@ -119,7 +119,7 @@
                                     </td>
                                 </tr>
                             {% else %}
-                                <tr id='{{ detail.tid }}' class='{% if detail.status_code==0 %}hiddenRow{% endif %}' type="case">
+                                <tr id='{{ detail.tid }}' cid="{{ test.summary.cid }}" class='{% if detail.status_code==0 %}hiddenRow{% endif %}' type="case">
                                     <td class='{{ detail.status }}Case'><div class='testcase'>{{ detail.desc }}</div></td>
                                     <td class='{{ detail.status }}Case' colspan='6' align='center'>{{ detail.status | upper }}</td>
                                 </tr>
