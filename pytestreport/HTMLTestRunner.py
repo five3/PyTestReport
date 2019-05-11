@@ -3,15 +3,15 @@ A TestRunner for use with the Python unit testing framework. It
 generates a HTML report to show the result at a glance.
 The simplest way to use this is to invoke its main method. E.g.
     import unittest
-    import HTMLTestRunner
+    import pytestreport
     ... define your tests ...
     if __name__ == '__main__':
-        HTMLTestRunner.main()
+        pytestreport.main()
 For more customization options, instantiates a HTMLTestRunner object.
 HTMLTestRunner is a counterpart to unittest's TextTestRunner. E.g.
     # output to a file
     fp = file('my_report.html', 'wb')
-    runner = HTMLTestRunner.HTMLTestRunner(
+    runner = pytestreport.HTMLTestRunner(
                 stream=fp,
                 title='My unit test',
                 description='This demonstrates the report output by HTMLTestRunner.'

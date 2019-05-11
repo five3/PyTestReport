@@ -1,6 +1,6 @@
-from .HTMLTestRunner import HTMLTestRunner as TestRunner
+from .HTMLTestRunner import HTMLTestRunner as TestRunner, main
 
-__all__ = ['TestRunner', 'shell', 'web']
+__all__ = ['TestRunner', 'main', 'shell', 'web']
 
 
 def shell():

@@ -9,7 +9,7 @@ from setuptools import setup, find_packages
 
 setup(
     name="PyTestReport",
-    version="0.1.1",
+    version="0.1.2",
     keywords=("test report", "python unit testing"),
     description="The HTML Report for Python unit testing Base on HTMLTestRunner",
     long_description="The HTML Report for Python unit testing Base on HTMLTestRunner",

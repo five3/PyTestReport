@@ -1,4 +1,5 @@
 import unittest
+import pytestreport
 
 
 class UTest(unittest.TestCase):
@@ -20,3 +21,7 @@ class UTest(unittest.TestCase):
 
     def testSkip(self):
         self.skipTest("Skip Test")
+
+
+if __name__ == '__main__':
+    pytestreport.main()
