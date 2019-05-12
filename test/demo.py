@@ -12,4 +12,4 @@ if __name__ == '__main__':
         runner = TestRunner(fp, title='默认主题', description='默认主题描述', verbosity=2)
                             # ,htmltemplate='legency.html', stylesheet='legency.css', javascript='legency.js')
         result = runner.run(suite)
-        print(json.dumps(result, ensure_ascii=False))
+        print(json.dumps(result.pytestreport_data, ensure_ascii=False))

@@ -52,7 +52,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 __original_author__ = "Wai Yip Tung"
 __update_author__ = "Xiaowu Chen"
-__version__ = "0.1.2"
+__version__ = "0.1.3"
 
 """
 0.1.0:
@@ -62,6 +62,13 @@ can be install as Python Lib, and setup with `pip`;
 can be use in command、as lib、as webservice、with unittest;
 0.1.2:
 modify the default theme
+0.1.3:
+view on github
+htmltestrunner with fp
+can be import as lib for un-unittest framework
+0.1.4:
+can be run and work with command line 
+can be run as web service and work with http post method
 """
 
 import datetime
@@ -274,10 +281,13 @@ class HTMLTestRunner(TemplateMixin):
 
         self.duration = datetime.datetime.now() - self.start_time
         data = self.generate_data(result)
-        output = self.generate_report(data)
+        html = self.generate_report(data)
 
         print(f'\nTime Elapsed: {self.duration}', file=sys.stderr)
-        return data
+        result.pytestreport_data = data
+        result.pytestreport_html = html
+
+        return result
 
     def generate_report(self, data):
         html_template = self.get_html_template()
@@ -422,9 +432,13 @@ class TestProgram(unittest.TestProgram):
         # Pick HTMLTestRunner as the default test runner.
         # base class's testRunner parameter is not useful because it means
         # we have to instantiate HTMLTestRunner before we know self.verbosity.
+        fp = None
         if self.testRunner is None:
-            self.testRunner = HTMLTestRunner(verbosity=self.verbosity)
+            fp = open('PyTestReport.html', 'wb')
+            self.testRunner = HTMLTestRunner(fp, verbosity=self.verbosity)
         unittest.TestProgram.runTests(self)
+        if fp:
+            fp.close()
 
 
 main = TestProgram

@@ -45,4 +45,4 @@ class UTestSkip(unittest.TestCase):
 
 
 if __name__ == '__main__':
-    pytestreport.main()
+    pytestreport.main(verbosity=2)
