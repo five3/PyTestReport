@@ -377,7 +377,7 @@ class HTMLTestRunner(TemplateMixin):
 
         return {
             'tests': tests,
-            'count': str(result.success_count + result.failure_count + result.error_count),
+            'count': str(result.success_count + result.failure_count + result.error_count + result.skip_count),
             'pass': str(result.success_count),
             'fail': str(result.failure_count),
             'error': str(result.error_count),
