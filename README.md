@@ -121,8 +121,6 @@ from pytestreport import TestRunner
 runner = TestRunner(fp, title='测试标题', description='测试描述', verbosity=2, javaScript='new_js.js')
 ```
 
-
-
 ## 如何更新模板
 HTML的模板被存放在`templates`目录下，默认保留了2个模板：default.html, legency.html。
 
