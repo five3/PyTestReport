@@ -65,8 +65,9 @@ modify the default theme
 0.1.3:
 view on github
 htmltestrunner with fp
-can be import as lib for un-unittest framework
+modify default theme template
 0.1.4:
+can be import as lib for un-unittest framework
 can be run and work with command line 
 can be run as web service and work with http post method
 """

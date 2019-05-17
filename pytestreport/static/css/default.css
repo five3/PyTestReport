@@ -81,3 +81,10 @@ tr {
 #ending {
     min-height: 30px;
 }
+.github {
+    height: 135px;
+    width: 135px;
+    top: 0;
+    right: 0;
+    position: absolute;
+}
