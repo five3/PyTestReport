@@ -18,7 +18,7 @@
 body        { font-family: verdana, arial, helvetica, sans-serif; font-size: 80%; }
 table       { font-size: 100%; }
 pre         { }
-
+p           { margin: 20px 0; }
 /* -- heading ---------------------------------------------------------------------- */
 .heading {
     margin: 10px;
@@ -41,41 +41,55 @@ a.popup_link:hover {
     top: 0px;
     /*border: solid #627173 1px; */
     padding: 10px;
-    background-color: #E6E6D6;
+    background-color: #F9F9F9;
     font-family: "Lucida Console", "Courier New", Courier, monospace;
     text-align: left;
     font-size: 8pt;
-    width: 500px;
+    width: 100%;
 }
 
 /* -- report ------------------------------------------------------------------------ */
+tr {
+    height: 30px;
+    font-size: 14px;
+    text-align: center;
+}
 #show_detail_line {
     margin-top: 3ex;
     margin-bottom: 1ex;
 }
 #result_table {
-    width: 80%;
-    border-collapse: collapse;
-    border: 1px solid #4682B4;
 }
 #header_row {
     font-weight: bold;
-    color: white;
-    background-color: #4682B4;
+    color: #332e2e;
+    background-color: #e4ecf3;
+    font-size: 16px;
+    height: 35px;
 }
 #result_table td {
-    border: 1px solid #a09d9d;
+    border: 1px solid #b9b4b4a1;
     padding: 2px;
+}
+.middle-col {
+    border-left: 1px solid #d4cfcf8f;
+    border-right: 1px solid #d4cfcf8f;
+}
+.total-area {
+    width: 100%;
+    height: 50%;
+    text-align: center;
+    padding: 15px;
 }
 #total_row  { font-weight: bold; }
 .passClass  { background-color: #00ff3733; }
-.failClass  { background-color: #f5091f3d; }
-.errorClass { background-color: #0662bb2e; }
+.failClass  { background-color: #eab2b73d; }
+.errorClass { background-color: #a3c8ec2e; }
 .skipClass { background-color: #40403f38; }
-.passCase   { color: #28a745; }
-.failCase   { color: #dc3545; font-weight: bold; }
-.errorCase  { color: #0c6cff; font-weight: bold; }
-.skipCase  { color: #40403f; }
+.passCase   { color: #28a745b0; }
+.failCase   { color: #dc354596; font-weight: bold; }
+.errorCase  { color: #0c6cff91; font-weight: bold; }
+.skipCase  { color: #40403f9e; }
 .hiddenRow  { display: none; }
 .testcase   { margin-left: 2em; }
 
@@ -97,16 +111,15 @@ a.popup_link:hover {
             </div>
         </div>
         <div class="row">
-            <div class="col-5">
+            <div class="col-4">
                 <div class='heading'>
-                    <h2>默认主题</h2><hr/>
+                    <h2>默认主题</h2>
                     
                         <p class='description'>默认主题描述</p>
-                        <hr/>
                     
                     <div>
-                        <p class='attribute'><strong>开始时间:</strong> 2019-05-12 23:21:56</p>
-                        <p class='attribute'><strong>执行耗时:</strong> 0:00:00.002000</p>
+                        <p class='attribute'><strong>开始时间:</strong> 2019-05-17 21:49:20</p>
+                        <p class='attribute'><strong>执行耗时:</strong> 0:00:00</p>
                         <p class='attribute'><strong>状态:</strong>
                             <span class="badge badge-success" style="background-color: rgb(0 255 127);">&nbsp;通过: 2&nbsp;</span>
                             <span class="badge badge-danger" style="background-color: rgb(255, 99, 132);">&nbsp;失败：2&nbsp;</span>
@@ -116,8 +129,18 @@ a.popup_link:hover {
                     </div>
                 </div>
             </div>
-            <div class="col">
-                <div style="width: 30%;">
+            <div class="col-4 middle-col">
+                <div class="total-area">
+                    <h1>60</h1>
+                    <div>用例总数</div>
+                </div>
+                <div class="total-area">
+                    <h1>6</h1>
+                    <div>套件总数</div>
+                </div>
+            </div>
+            <div class="col-4">
+                <div style="width: 50%;">
                     <canvas id="chart-area" width="200" height="200"></canvas>
                 </div>
             </div>
@@ -138,7 +161,7 @@ a.popup_link:hover {
 
         <div class="row">
             <div class="col">
-                <table id='result_table'>
+                <table id='result_table' class="table">
                     <colgroup>
                         <col align='left' />
                         <col align='right' />
