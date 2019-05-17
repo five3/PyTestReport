@@ -7,7 +7,7 @@ from pytestreport import HTMLTestRunner
 # python setup.py bdist
 # python setup.py bdist_egg
 # python setup.py bdist_wheel
-# twine upload dist/*
+# twine upload dist/*0.1.4*
 
 setup(
     name="PyTestReport",

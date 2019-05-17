@@ -52,7 +52,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 __original_author__ = "Wai Yip Tung"
 __update_author__ = "Xiaowu Chen"
-__version__ = "0.1.3"
+__version__ = "0.1.4"
 
 """
 0.1.0:
@@ -63,10 +63,11 @@ can be use in command、as lib、as webservice、with unittest;
 0.1.2:
 modify the default theme
 0.1.3:
-view on github
 htmltestrunner with fp
 modify default theme template
 0.1.4:
+view on github
+0.1.5:
 can be import as lib for un-unittest framework
 can be run and work with command line 
 can be run as web service and work with http post method
