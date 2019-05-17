@@ -18,7 +18,12 @@
     <h1>{{ title }}</h1>
     <p class='attribute'><strong>开始时间:</strong> {{ report_summary.start_time }}</p>
     <p class='attribute'><strong>执行耗时:</strong> {{ report_summary.duration }}</p>
-    <p class='attribute'><strong>状态:</strong> {{ report_summary.status }}</p>
+    <p class='attribute'><strong>状态:</strong>
+        <span class="badge badge-success">&nbsp;通过: {{ report_summary.status.pass }}&nbsp;</span>
+        <span class="badge badge-danger">&nbsp;失败：{{ report_summary.status.fail }}&nbsp;</span>
+        <span class="badge badge-primary">&nbsp;错误：{{ report_summary.status.error }}&nbsp;</span>
+        <span class="badge badge-secondary">&nbsp;跳过：{{ report_summary.status.skip }}&nbsp;</span>
+    </p>
     <p class='description'>{{ description }}</p>
 </div>
 
@@ -48,7 +53,7 @@
         <td>View</td>
     </tr>
     {% for test in report_detail.tests %}
-    <tr class='{{ test.summary.style }}'>
+    <tr class='{{ test.summary.status }}Class'>
         <td>{{ test.summary.desc }}</td>
         <td>{{ test.summary.count }}</td>
         <td>{{ test.summary.pass }}</td>
@@ -59,8 +64,8 @@
     </tr>
         {% for detail in test.detail %}
             {% if detail.has_output %}
-                <tr id='{{ detail.tid }}' class='{{ detail.class }}'>
-                    <td class='{{ detail.style }}'><div class='testcase'>{{ detail.desc }}</div></td>
+                <tr id='{{ detail.tid }}' class='{% if detail.status_code==0 %}hiddenRow{% endif %}'>
+                    <td class='{{ detail.style }}Case'><div class='testcase'>{{ detail.desc }}</div></td>
                     <td colspan='6' align='center'>
                     <!--css div popup start-->
                     <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_{{ detail.tid }}')" >

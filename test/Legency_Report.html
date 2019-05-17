@@ -179,9 +179,14 @@ function showOutput(id, name) {
 
 <div class='heading'>
     <h1>默认主题</h1>
-    <p class='attribute'><strong>开始时间:</strong> 2019-05-17 21:52:38</p>
-    <p class='attribute'><strong>执行耗时:</strong> 0:00:00.001994</p>
-    <p class='attribute'><strong>状态:</strong> {'pass': 2, 'fail': 2, 'error': 2, 'skip': 2}</p>
+    <p class='attribute'><strong>开始时间:</strong> 2019-05-17 22:02:00</p>
+    <p class='attribute'><strong>执行耗时:</strong> 0:00:00.000999</p>
+    <p class='attribute'><strong>状态:</strong>
+        <span class="badge badge-success">&nbsp;通过: 2&nbsp;</span>
+        <span class="badge badge-danger">&nbsp;失败：2&nbsp;</span>
+        <span class="badge badge-primary">&nbsp;错误：2&nbsp;</span>
+        <span class="badge badge-secondary">&nbsp;跳过：2&nbsp;</span>
+    </p>
     <p class='description'>默认主题描述</p>
 </div>
 
@@ -211,7 +216,7 @@ function showOutput(id, name) {
         <td>View</td>
     </tr>
     
-    <tr class=''>
+    <tr class='errorClass'>
         <td>utDemo.UTest</td>
         <td>4</td>
         <td>1</td>
@@ -223,7 +228,7 @@ function showOutput(id, name) {
         
             
                 <tr id='et1.1' class=''>
-                    <td class=''><div class='testcase'>testError</div></td>
+                    <td class='Case'><div class='testcase'>testError</div></td>
                     <td colspan='6' align='center'>
                     <!--css div popup start-->
                     <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_et1.1')" >
@@ -248,7 +253,7 @@ ZeroDivisionError: division by zero
         
             
                 <tr id='ft1.2' class=''>
-                    <td class=''><div class='testcase'>testFalse</div></td>
+                    <td class='Case'><div class='testcase'>testFalse</div></td>
                     <td colspan='6' align='center'>
                     <!--css div popup start-->
                     <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_ft1.2')" >
@@ -273,7 +278,7 @@ AssertionError: True is not false
         
             
                 <tr id='st1.3' class=''>
-                    <td class=''><div class='testcase'>testSkip</div></td>
+                    <td class='Case'><div class='testcase'>testSkip</div></td>
                     <td colspan='6' align='center'>
                     <!--css div popup start-->
                     <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_st1.3')" >
@@ -300,7 +305,7 @@ st1.3: Skip Test
             
         
     
-    <tr class=''>
+    <tr class='errorClass'>
         <td>utDemo.UTestError</td>
         <td>1</td>
         <td>0</td>
@@ -312,7 +317,7 @@ st1.3: Skip Test
         
             
                 <tr id='et2.1' class=''>
-                    <td class=''><div class='testcase'>testError</div></td>
+                    <td class='Case'><div class='testcase'>testError</div></td>
                     <td colspan='6' align='center'>
                     <!--css div popup start-->
                     <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_et2.1')" >
@@ -336,7 +341,7 @@ ZeroDivisionError: division by zero
             
         
     
-    <tr class=''>
+    <tr class='failClass'>
         <td>utDemo.UTestFail</td>
         <td>1</td>
         <td>0</td>
@@ -348,7 +353,7 @@ ZeroDivisionError: division by zero
         
             
                 <tr id='ft3.1' class=''>
-                    <td class=''><div class='testcase'>testFalse</div></td>
+                    <td class='Case'><div class='testcase'>testFalse</div></td>
                     <td colspan='6' align='center'>
                     <!--css div popup start-->
                     <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_ft3.1')" >
@@ -372,7 +377,7 @@ AssertionError: True is not false
             
         
     
-    <tr class=''>
+    <tr class='passClass'>
         <td>utDemo.UTestPass</td>
         <td>1</td>
         <td>1</td>
@@ -390,7 +395,7 @@ AssertionError: True is not false
             
         
     
-    <tr class=''>
+    <tr class='skipClass'>
         <td>utDemo.UTestSkip</td>
         <td>1</td>
         <td>0</td>
@@ -402,7 +407,7 @@ AssertionError: True is not false
         
             
                 <tr id='st5.1' class=''>
-                    <td class=''><div class='testcase'>testSkip</div></td>
+                    <td class='Case'><div class='testcase'>testSkip</div></td>
                     <td colspan='6' align='center'>
                     <!--css div popup start-->
                     <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_st5.1')" >

@@ -110,7 +110,7 @@
                         {% for detail in test.detail %}
                             {% if detail.has_output %}
                                 <tr id='{{ detail.tid }}' cid="{{ test.summary.cid }}" class='{% if detail.status_code==0 %}hiddenRow{% endif %}' type="case">
-                                    <td class='{{ detail.status }}Case'><div class='testcase'>{{ detail.desc }}</div></td>
+                                    <td class='{{ detail.style }}Case'><div class='testcase'>{{ detail.desc }}</div></td>
                                     <td colspan='6' align='center'>
                                     <!--css div popup start-->
                                     <a class="popup_link {{ detail.status }}Case" onfocus='this.blur();' href="javascript:showTestDetail('div_{{ detail.tid }}')" >
