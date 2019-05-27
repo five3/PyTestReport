@@ -24,6 +24,7 @@ setup(
     package_dir={'pytestreport': 'pytestreport'},         # 指定哪些包的文件被映射到哪个源码包
     packages=['pytestreport'],       # 需要打包的目录。如果多个的话，可以使用find_packages()自动发现
     include_package_data=True,
+    package_data={'pytestreport': ['static/*', 'templates/*']},
     py_modules=[],          # 需要打包的python文件列表
     data_files=[            # 打包时需要打包的数据文件
         'pytestreport/templates/default.html',
@@ -42,12 +43,13 @@ setup(
         'console_scripts': [    # 配置生成命令行工具及入口
             'PyTestReport.shell = pytestreport:shell',
             'PyTestReport.web = pytestreport:web'
-        ]
+        ], "pytest11": ["pytestreport = pytestreport.PyTestReportPlug"]
     },
     classifiers=[           # 程序的所属分类列表
         "Programming Language :: Python :: 3",
         "License :: OSI Approved :: MIT License",
         "Operating System :: OS Independent",
+        "Framework :: Pytest"
     ],
     zip_safe=False
 )

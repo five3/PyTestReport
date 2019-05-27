@@ -52,7 +52,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 __original_author__ = "Wai Yip Tung"
 __update_author__ = "Xiaowu Chen"
-__version__ = "0.1.4"
+__version__ = "0.1.5"
 
 """
 0.1.0:
@@ -70,7 +70,12 @@ view on github
 0.1.5:
 can be import as lib for un-unittest framework
 can be run and work with command line 
+0.1.6：
 can be run as web service and work with http post method
+0.1.7：
+support pytest unittest framework
+0.1.8：
+add beautifulReport theme
 """
 
 import datetime
@@ -134,10 +139,6 @@ class TemplateMixin(object):
 
     DEFAULT_TITLE = 'PyTestReport Sample'
     DEFAULT_DESCRIPTION = ''
-
-    HTML_TMPL = 'default.html'
-    STYLESHEET_TMPL = 'default.css'
-    JAVASCRIPT_TMPL = 'default.js'
 
 
 TestResult = unittest.TestResult
@@ -263,7 +264,7 @@ class _TestResult(TestResult):
 
 class HTMLTestRunner(TemplateMixin):
     def __init__(self, stream=sys.stdout, verbosity=2, title=None, description=None,
-                 stylesheet=None, htmltemplate=None, javascript=None):
+                 theme=None, stylesheet=None, htmltemplate=None, javascript=None):
         self.stream = stream
         self.verbosity = verbosity
 
@@ -272,9 +273,11 @@ class HTMLTestRunner(TemplateMixin):
 
         self.title = title or self.DEFAULT_TITLE
         self.description = description or self.DEFAULT_DESCRIPTION
-        self.stylesheet = stylesheet or self.STYLESHEET_TMPL
-        self.htmltemplate = htmltemplate or self.HTML_TMPL
-        self.javascript = javascript or self.JAVASCRIPT_TMPL
+
+        theme = theme or 'default'
+        self.htmltemplate = htmltemplate or f'{theme}.html'
+        self.stylesheet = stylesheet or f'{theme}.css'
+        self.javascript = javascript or f'{theme}.js'
 
     def run(self, test):
         """Run the given test case or test suite."""

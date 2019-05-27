@@ -75,18 +75,79 @@ if __name__ == '__main__':
 ```python
 from pytestreport import TestRunner
 ...
-runner = TestRunner(fp, title='测试标题', description='测试描述', verbosity=2, 
-                    htmltemplate='legency.html', stylesheet='legency.css', javascript='legency.js')
+runner = TestRunner(fp, title='测试标题', description='测试描述', verbosity=2, theme='legency')
 ```
 
-### Lib库引入样例
-```bash
-暂未支持
+### API库引入样例
+```python
+from pytestreport.api import make_report
+
+data = {
+    "generator": "PyTestReport 0.1.4",
+    "title": "默认主题",
+    "description": "默认主题描述",
+    "report_summary": {
+        "start_time": "2019-05-12 23:07:49",
+        "duration": "0:00:00.002000",
+        "status": {
+            "pass": 1,
+            "fail": 0,
+            "error": 0,
+            "skip": 0
+        }
+    },
+    "report_detail": {
+        "tests": [
+            {
+                "summary": {
+                    "desc": "utDemo.UTestPass",
+                    "count": 1,
+                    "pass": 1,
+                    "fail": 0,
+                    "error": 0,
+                    "skip": 0,
+                    "cid": "c1",
+                    "status": "pass"
+                },
+                "detail": [
+                    {
+                        "has_output": False,
+                        "tid": "pt1.1",
+                        "desc": "testTrue",
+                        "output": "",
+                        "status": "pass",
+                        "status_code": 0
+                    }
+                ]
+            }
+        ],
+        "count": "1",
+        "pass": "1",
+        "fail": "0",
+        "error": "0",
+        "skip": "0"
+    }
+}
+with open('API_Report.html', 'wb') as fp:
+    make_report(fp, data)
+# will be create API_Report.html file at current directory.
+```
+同样的，你也可以指定特定的主题或者样式。比如：
+```python
+...
+with open('API_Report.html', 'wb') as fp:
+    make_report(fp, data, theme='new_theme', stylesheet='new_stylesheet_2.css')
 ```
 
 ### 命令行样例
-```python
-暂未支持
+命令行样式，以data的json文件为参数，同时可选的参数有主题，样式、js等。
+```bash
+PyTestReport.shell /path/to/data/file.json [reportfile theme htmltemplate stylesheet javascript]
+# will be create html report at current directory, the content of data.json should same as the data object in API sample.
+```
+实际运行时，需要把符合规范的测试结果数据存放到data.json文件中。比如：当前data.json的数据已与API样例中的data数据等同。
+```bash
+PyTestReport.shell data.json output.html
 ```
 
 ### REST API样例
@@ -126,11 +187,18 @@ HTML的模板被存放在`templates`目录下，默认保留了2个模板：defa
 
 > 如果你选择修改模板，那么一般情况下你可能同时也需要修改CSS或JS文件。所以我们更推荐的方式是直接新增一个主题（包括html、css、js），并且在主题功能完善之后发送一个pull request，贡献到本项目中提供给更多的人使用！
 
+新模板的使用方式如下：
 ```python
 from pytestreport import TestRunner
 ...
 runner = TestRunner(fp, title='测试标题', description='测试描述', verbosity=2,
                     htmltemplate='new_theme.html', stylesheet='new_theme.css', javascript='new_theme.js')
+```
+或者
+```python
+from pytestreport import TestRunner
+...
+runner = TestRunner(fp, title='测试标题', description='测试描述', verbosity=2, theme='new_theme')
 ```
 
 > 这里需要注意的是，如果新模板需要引用第三方库（js、css），请优先使用CDN链接而非本地静态文件。
