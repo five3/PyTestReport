@@ -49,11 +49,11 @@
             </div>
             <div class="col-4 middle-col">
                 <div class="total-area">
-                    <h1>60</h1>
+                    <h1>{{ report_detail.count }}</h1>
                     <div>用例总数</div>
                 </div>
                 <div class="total-area">
-                    <h1>6</h1>
+                    <h1>{{ report_summary.suite_count }}</h1>
                     <div>套件总数</div>
                 </div>
             </div>
@@ -90,7 +90,7 @@
                         <col align='right' />
                     </colgroup>
                     <tr id='header_row'>
-                        <td>测试套件/用例</td>
+                        <td style="width: 300px;">测试套件/用例</td>
                         <td>用例总数</td>
                         <td>通过</td>
                         <td>失败</td>
@@ -122,7 +122,8 @@
                                            [x]</a>
                                         </div>
                                         <pre>
-{{ detail.tid }}: {{ detail.output }}
+{{ detail.tid }}:
+{{ detail.output }}
                                         </pre>
                                     </div>
                                     <!--css div popup end-->
