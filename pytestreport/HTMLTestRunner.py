@@ -319,12 +319,14 @@ class HTMLTestRunner(TemplateMixin):
             'pass': result.success_count,
             'fail': result.failure_count,
             'error': result.error_count,
-            'skip': result.skip_count
+            'skip': result.skip_count,
+            'count': result.skip_count + result.error_count + result.failure_count + result.success_count
         }
         return {
             'start_time': start_time,
             'duration': duration,
-            'status': status
+            'status': status,
+            'suite_count': len(result.result)
         }
 
     def get_stylesheet(self):
