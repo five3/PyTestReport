@@ -52,7 +52,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 __original_author__ = "Wai Yip Tung"
 __update_author__ = "Xiaowu Chen"
-__version__ = "0.1.5"
+__version__ = "0.1.6"
 
 """
 0.1.0:
@@ -71,6 +71,8 @@ view on github
 can be import as lib for un-unittest framework
 can be run and work with command line 
 0.1.6：
+bug hot fix
+0.1.7:
 can be run as web service and work with http post method
 0.1.7：
 support pytest unittest framework
