@@ -117,7 +117,7 @@ if __name__ == '__main__':
     "--pytest_title", "report title", "--pytest_desc", "report desc",
     "--pytest_theme", "new_theme"])
 ```
-当然，你也可以通过命令行的方式来启动pytest执行单元测试。比如：
+另外，你也可以通过命令行的方式来启动pytest执行单元测试。比如：
 ```bash
 pytest -s pytest_Demo.py --pytest_report Pytest_Report.html --pytest_theme new_theme
 ```
