@@ -49,8 +49,8 @@ class TestResult:
         self.outcome = outcome
         self.report = report
 
-        print(outcome)
-        print(report._to_json())
+        # print(outcome)
+        # print(report._to_json())
 
     def output(self, cid, tid):
         if self.outcome.startswith('X'):
