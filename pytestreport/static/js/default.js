@@ -11,19 +11,19 @@ function showCase(level) {
         if (level === 0 && tr.getAttribute('type') === 'case') {
             tr.className = 'hiddenRow';
         } else if (level === 1) {
-            if (id.substr(0,2) === 'ft') {
+            if (id.indexOf('testfail') === 0) {
                 tr.className = '';
             } else if (tr.getAttribute('type') === 'case') {
                 tr.className = 'hiddenRow';
             }
         } else if (level === 2) {
-            if (id.substr(0,2) === 'et') {
+            if (id.indexOf('testerror') === 0) {
                 tr.className = '';
             } else if (tr.getAttribute('type') === 'case') {
                 tr.className = 'hiddenRow';
             }
         } else if (level === 3) {
-            if (id.substr(0,2) === 'st') {
+            if (id.indexOf('testskip') === 0) {
                 tr.className = '';
             } else if (tr.getAttribute('type') === 'case') {
                 tr.className = 'hiddenRow';
@@ -53,15 +53,12 @@ function showClassDetail(cid, count) {
 }
 
 function showTestDetail(div_id){
-    var details_div = document.getElementById(div_id)
-    var displayState = details_div.style.display
-    // alert(displayState)
-    if (displayState != 'block' ) {
-        displayState = 'block'
-        details_div.style.display = 'block'
-    }
-    else {
-        details_div.style.display = 'none'
+    var details_div = document.getElementById(div_id);
+    var displayState = details_div.style.display;
+    if (displayState !== 'block' ) {
+        details_div.style.display = 'block';
+    } else {
+        details_div.style.display = 'none';
     }
 }
 function html_escape(s) {

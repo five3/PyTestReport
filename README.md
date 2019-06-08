@@ -31,13 +31,13 @@ python setup.py install
 
 # 使用
 PyTestReport可用通过多种方式运行，分别如下：
-- 单元测试 
+- 单元测试(unittest, pytest) 
 - lib库引入
 - 命令行
 - REST API
 
 ## 样例说明
-### 单元测试样例
+### 单元测试样例(unittest)
 ```python
 import unittest
 import pytestreport
@@ -78,6 +78,56 @@ from pytestreport import TestRunner
 runner = TestRunner(fp, title='测试标题', description='测试描述', verbosity=2, theme='legency')
 ```
 
+### 单元测试样例（pytest）
+对于pytest框架，收集其测试结果信息是通过pytest插件形式实现的。使用之前只要确保正常安装了PyTestReport即可。具体使用方式如下：
+```python
+import pytest
+
+
+def testTrue():
+    assert True
+
+
+def testFalse():
+    assert False
+
+
+def testError():
+    1 / 0
+
+
+@pytest.mark.skip(reason="misunderstood the API")
+def testSkip():
+    assert 1 == 1
+
+
+@pytest.mark.xfail(reason="Xpass")
+def testXPass():
+    assert True
+
+
+@pytest.mark.xfail(reason="Xfail")
+def testXFail():
+    assert False
+
+
+if __name__ == '__main__':
+    pytest.main(["-s", "pytest_Demo.py", "--pytest_report", "Pytest_Report.html"])
+```
+需要注意的是，pytest框架想要使用本测试报告框架，在调用时需要带上`--pytest_report`参数，并指定一个报告的文件路径即可。当然你也可以同时指定一个非默认主题。比如：
+```python
+import pytest
+
+if __name__ == '__main__':
+    pytest.main(["-s", "pytest_Demo.py", "--pytest_report", "Pytest_Report.html", 
+    "--pytest_title", "report title", "--pytest_desc", "report desc",
+    "--pytest_theme", "new_theme"])
+```
+当然，你也可以通过命令行的方式来启动pytest执行单元测试。比如：
+```bash
+pytest -s pytest_Demo.py --pytest_report Pytest_Report.html --pytest_theme new_theme
+```
+
 ### API库引入样例
 ```python
 from pytestreport.api import make_report
@@ -89,11 +139,13 @@ data = {
     "report_summary": {
         "start_time": "2019-05-12 23:07:49",
         "duration": "0:00:00.002000",
+        "suite_count": 1,
         "status": {
             "pass": 1,
             "fail": 0,
             "error": 0,
-            "skip": 0
+            "skip": 0,
+            "count": 1
         }
     },
     "report_detail": {
@@ -106,13 +158,13 @@ data = {
                     "fail": 0,
                     "error": 0,
                     "skip": 0,
-                    "cid": "c1",
+                    "cid": "testclass1",
                     "status": "pass"
                 },
                 "detail": [
                     {
                         "has_output": False,
-                        "tid": "pt1.1",
+                        "tid": "testpass.1.1",
                         "desc": "testTrue",
                         "output": "",
                         "status": "pass",
@@ -216,11 +268,13 @@ runner = TestRunner(fp, title='测试标题', description='测试描述', verbos
   "report_summary": {   # 报告总体概要数据
     "start_time": "2019-05-12 23:07:49",
     "duration": "0:00:00.002000",
+    "suite_count": 1,
     "status": {
       "pass": 1,
       "fail": 0,
       "error": 0,
-      "skip": 0
+      "skip": 0,
+      "count": 1
     }
   },
   "report_detail": {    # 报告详情数据
@@ -233,13 +287,13 @@ runner = TestRunner(fp, title='测试标题', description='测试描述', verbos
           "fail": 0,
           "error": 0,
           "skip": 0,
-          "cid": "c1",    # 唯一标识测试用例类的id：c1，表示排序后的第1个测试用例类
+          "cid": "testclass1",    # 唯一标识测试用例类的id：c1，表示排序后的第1个测试用例类
           "status": "pass"
         },
         "detail": [   # 测试用例的详情
           {
             "has_output": false,  # 标识该测试用例是否有输出内容，通常PASS是没有输出内容的。
-            "tid": "pt1.1",        # 唯一标识测试用例的id，格式为：{状态首字母}{testcase首字母}{所属测试用例类的序号}{当前测试用例的序号}
+            "tid": "testpass.1.1",        # 唯一标识测试用例的id，格式为：{状态首字母}{testcase首字母}{所属测试用例类的序号}{当前测试用例的序号}
             "desc": "testTrue",     # 测试用例名称
             "output": "",   # 输出内容，如果该测试用例有输出的话
             "status": "pass",

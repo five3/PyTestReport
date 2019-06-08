@@ -1,7 +1,7 @@
 import json
 import unittest
 
-import utDemo
+import unittest_Demo
 from pytestreport import TestRunner
 from pytestreport.api import make_report
 
@@ -9,7 +9,7 @@ from pytestreport.api import make_report
 class TestReport(unittest.TestCase):
     def setUp(self):
         self.suite = unittest.TestSuite()
-        self.suite.addTests(unittest.TestLoader().loadTestsFromModule(utDemo))
+        self.suite.addTests(unittest.TestLoader().loadTestsFromModule(unittest_Demo))
 
     def test_default_report(self):
         with open('Default_Report.html', 'wb') as fp:
