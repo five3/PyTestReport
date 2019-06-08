@@ -1,0 +1,374 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <title>默认主题</title>
+        <meta name="generator" content="PyTestReport 0.1.4"/>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <!-- Chart CSS -->
+        <link href="https://cdn.bootcss.com/Chart.js/2.8.0-rc.1/Chart.min.css" rel="stylesheet">
+        <style type="text/css" media="screen">
+            
+body        { font-family: verdana, arial, helvetica, sans-serif; font-size: 80%; color: #888888; }
+table       { font-size: 100%; }
+pre         { color: #888888; }
+p           { margin: 20px 0; }
+/* -- heading ---------------------------------------------------------------------- */
+.heading {
+    margin: 10px;
+}
+.heading .attribute {
+    margin-top: 1ex;
+    margin-bottom: 0;
+}
+
+/* -- css div popup ------------------------------------------------------------------------ */
+a.popup_link {
+}
+a.popup_link:hover {
+    color: red;
+}
+.popup_window {
+    display: none;
+    position: relative;
+    left: 0px;
+    top: 0px;
+    /*border: solid #627173 1px; */
+    padding: 10px;
+    background-color: #F9F9F9;
+    font-family: "Lucida Console", "Courier New", Courier, monospace;
+    text-align: left;
+    font-size: 8pt;
+    width: 100%;
+}
+
+/* -- report ------------------------------------------------------------------------ */
+tr {
+    height: 30px;
+    font-size: 14px;
+    text-align: center;
+}
+#show_detail_line {
+    margin-top: 3ex;
+    margin-bottom: 1ex;
+}
+#result_table {
+}
+#header_row {
+    font-weight: bold;
+    color: #888888;
+    background-color: #e4ecf3;
+    font-size: 16px;
+    height: 35px;
+}
+#result_table td {
+    border: 1px solid #b9b4b4a1;
+    padding: 2px;
+}
+.middle-col {
+    border-left: 1px solid #d4cfcf8f;
+    border-right: 1px solid #d4cfcf8f;
+}
+.total-area {
+    width: 100%;
+    height: 50%;
+    text-align: center;
+    padding: 15px;
+}
+#total_row  { font-weight: bold; }
+.passClass  { background-color: #00ff3733; }
+.failClass  { background-color: #eab2b73d; }
+.errorClass { background-color: #a3c8ec2e; }
+.skipClass { background-color: #40403f38; }
+.passCase   { color: #28a745b0; }
+.failCase   { color: #dc354596; font-weight: bold; }
+.errorCase  { color: #0c6cff91; font-weight: bold; }
+.skipCase  { color: #40403f9e; }
+.hiddenRow  { display: none; }
+.testcase   { margin-left: 2em; }
+
+/* -- ending ---------------------------------------------------------------------- */
+#ending {
+    min-height: 30px;
+}
+.github {
+    height: 135px;
+    width: 135px;
+    top: 0;
+    right: 0;
+    position: absolute;
+}
+        </style>
+
+        <script src="https://cdn.bootcss.com/Chart.js/2.8.0-rc.1/Chart.min.js"></script>
+    </head>
+    <body>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col" style="height: 20px;">
+                <a href="https://github.com/five3/PyTestReport" class="github">
+                    <img style="position: absolute; top: 0; right: 0; border: 0;" src="https://github.com/five3/testqa/blob/master/images/forkme.png?raw=true" alt="Fork me on GitHub" class="github">
+                </a>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-4">
+                <div class='heading'>
+                    <h2>默认主题</h2>
+                    
+                        <p class='description'>默认主题描述</p>
+                    
+                    <div>
+                        <p class='attribute'><strong>开始时间:</strong> 2019-05-12 23:07:49</p>
+                        <p class='attribute'><strong>执行耗时:</strong> 0:00:00.002000</p>
+                        <p class='attribute'><strong>状态:</strong>
+                            <span class="badge badge-success" style="background-color: rgb(0 255 127);">&nbsp;通过: 1&nbsp;</span>
+                            <span class="badge badge-danger" style="background-color: rgb(255, 99, 132);">&nbsp;失败：0&nbsp;</span>
+                            <span class="badge badge-primary" style="background-color: rgb(54, 162, 235);">&nbsp;错误：0&nbsp;</span>
+                            <span class="badge badge-secondary" style="background-color: rgb(201, 203, 207);">&nbsp;跳过：0&nbsp;</span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-4 middle-col">
+                <div class="total-area">
+                    <h1>1</h1>
+                    <div>用例总数</div>
+                </div>
+                <div class="total-area">
+                    <h1></h1>
+                    <div>套件总数</div>
+                </div>
+            </div>
+            <div class="col-4">
+                <div style="width: 50%;">
+                    <canvas id="chart-area" width="200" height="200"></canvas>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col">
+                <hr/>
+                <p id='show_detail_line'>显示：
+                    <a href='javascript:showCase(0)'>概要</a>
+                    <a href='javascript:showCase(1)'>失败</a>
+                    <a href='javascript:showCase(2)'>错误</a>
+                    <a href='javascript:showCase(3)'>跳过</a>
+                    <a href='javascript:showCase(4)'>全部</a>
+                </p>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col">
+                <table id='result_table' class="table">
+                    <colgroup>
+                        <col align='left' />
+                        <col align='right' />
+                        <col align='right' />
+                        <col align='right' />
+                        <col align='right' />
+                        <col align='right' />
+                        <col align='right' />
+                    </colgroup>
+                    <tr id='header_row'>
+                        <td style="width: 300px;">测试套件/用例</td>
+                        <td>用例总数</td>
+                        <td>通过</td>
+                        <td>失败</td>
+                        <td>错误</td>
+                        <td>跳过</td>
+                        <td>查看</td>
+                    </tr>
+                    
+                    <tr class='passClass' type="suite" id="c1">
+                        <td>utDemo.UTestPass</td>
+                        <td>1</td>
+                        <td>1</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td><a href="javascript:showClassDetail('c1',1)">查看详情</a></td>
+                    </tr>
+                        
+                            
+                                <tr id='pt1.1' cid="c1" class='hiddenRow' type="case">
+                                    <td class='passCase'><div class='testcase'>testTrue</div></td>
+                                    <td class='passCase' colspan='6' align='center'>PASS</td>
+                                </tr>
+                            
+                        
+                    
+                    <tr id='total_row'>
+                        <td>总计</td>
+                        <td>1</td>
+                        <td>1</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>&nbsp;</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col">
+                <div id='ending'>
+
+                </div>
+            </div>
+        </div>
+        <!-- Optional JavaScript -->
+        <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+        <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+        <script src="https://cdn.bootcss.com/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+        <script src="https://cdn.bootcss.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+        <script language="javascript" type="text/javascript">
+            
+output_list = Array();
+/* level - 0:Summary; 1:Failed; 2:Skip; 3:All */
+
+function showCase(level) {
+    trs = document.getElementsByTagName("tr");
+    for (var i = 0; i < trs.length; i++) {
+        tr = trs[i];
+        id = tr.id;
+
+        if (level === 0 && tr.getAttribute('type') === 'case') {
+            tr.className = 'hiddenRow';
+        } else if (level === 1) {
+            if (id.substr(0,2) === 'ft') {
+                tr.className = '';
+            } else if (tr.getAttribute('type') === 'case') {
+                tr.className = 'hiddenRow';
+            }
+        } else if (level === 2) {
+            if (id.substr(0,2) === 'et') {
+                tr.className = '';
+            } else if (tr.getAttribute('type') === 'case') {
+                tr.className = 'hiddenRow';
+            }
+        } else if (level === 3) {
+            if (id.substr(0,2) === 'st') {
+                tr.className = '';
+            } else if (tr.getAttribute('type') === 'case') {
+                tr.className = 'hiddenRow';
+            }
+        } else if (level === 4 && tr.getAttribute('type') === 'case') {
+            tr.className = '';
+        }
+    }
+}
+
+function showClassDetail(cid, count) {
+    var tr_list = document.querySelectorAll('tr[cid='+cid+']');
+    var toHide = 1;
+
+    for (var i = 0; i < count; i++) {
+        if (tr_list[i].className) {
+            toHide = 0;
+        }
+    }
+    for (var i = 0; i < count; i++) {
+        if (toHide) {
+            tr_list[i].className = 'hiddenRow';
+        } else {
+            tr_list[i].className = '';
+        }
+    }
+}
+
+function showTestDetail(div_id){
+    var details_div = document.getElementById(div_id)
+    var displayState = details_div.style.display
+    // alert(displayState)
+    if (displayState != 'block' ) {
+        displayState = 'block'
+        details_div.style.display = 'block'
+    }
+    else {
+        details_div.style.display = 'none'
+    }
+}
+function html_escape(s) {
+    s = s.replace(/&/g,'&amp;');
+    s = s.replace(/</g,'&lt;');
+    s = s.replace(/>/g,'&gt;');
+    return s;
+}
+
+
+
+            (function() {
+                window.chartColors = {
+                    red: 'rgb(255, 99, 132)',
+                    orange: 'rgb(255, 159, 64)',
+                    yellow: 'rgb(255, 205, 86)',
+                    green: 'rgb(0 255 127)',
+                    blue: 'rgb(54, 162, 235)',
+                    purple: 'rgb(153, 102, 255)',
+                    grey: 'rgb(201, 203, 207)'
+                };
+                var config = {
+                    type: 'doughnut',
+                    data: {
+                        datasets: [{
+                            data: [
+                                1,
+                                0,
+                                0,
+                                0,
+                            ],
+                            backgroundColor: [
+                                window.chartColors.green,
+                                window.chartColors.red,
+                                window.chartColors.blue,
+                                window.chartColors.grey
+                            ],
+                            hoverBackgroundColor: [
+                                window.chartColors.green,
+                                window.chartColors.red,
+                                window.chartColors.blue,
+                                window.chartColors.grey
+                            ],
+                            label: 'Dataset 1'
+                        }],
+                        labels: [
+                            '通过',
+                            '失败',
+                            '错误',
+                            '跳过',
+                        ]
+                    },
+                    options: {
+                        responsive: true,
+                        legend: {
+                            position: 'top',
+                        },
+                        title: {
+                            display: true,
+                            text: '测试结果占比'
+                        },
+                        animation: {
+                            animateScale: true,
+                            animateRotate: true
+                        }
+                    }
+                };
+                window.onload = function() {
+                    var ctx = document.getElementById('chart-area').getContext('2d');
+                    window.myDoughnut = new Chart(ctx, config);
+                };
+            })();
+        </script>
+    </div>
+    </body>
+</html>
