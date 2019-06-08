@@ -83,28 +83,22 @@ runner = TestRunner(fp, title='测试标题', description='测试描述', verbos
 ```python
 import pytest
 
-
 def testTrue():
     assert True
-
 
 def testFalse():
     assert False
 
-
 def testError():
     1 / 0
-
 
 @pytest.mark.skip(reason="misunderstood the API")
 def testSkip():
     assert 1 == 1
 
-
 @pytest.mark.xfail(reason="Xpass")
 def testXPass():
     assert True
-
 
 @pytest.mark.xfail(reason="Xfail")
 def testXFail():
@@ -287,13 +281,13 @@ runner = TestRunner(fp, title='测试标题', description='测试描述', verbos
           "fail": 0,
           "error": 0,
           "skip": 0,
-          "cid": "testclass1",    # 唯一标识测试用例类的id：c1，表示排序后的第1个测试用例类
+          "cid": "testclass1",    # 唯一标识测试用例类的id：testclass1--表示排序后的第1个测试用例类
           "status": "pass"
         },
         "detail": [   # 测试用例的详情
           {
             "has_output": false,  # 标识该测试用例是否有输出内容，通常PASS是没有输出内容的。
-            "tid": "testpass.1.1",        # 唯一标识测试用例的id，格式为：{状态首字母}{testcase首字母}{所属测试用例类的序号}{当前测试用例的序号}
+            "tid": "testpass.1.1",        # 唯一标识测试用例的id，格式为：test{测试结果状态}.{所属测试用例类的序号}.{当前测试用例的序号}
             "desc": "testTrue",     # 测试用例名称
             "output": "",   # 输出内容，如果该测试用例有输出的话
             "status": "pass",
