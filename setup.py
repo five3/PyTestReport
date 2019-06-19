@@ -27,6 +27,7 @@ setup(
     package_data={'pytestreport': ['static/*', 'templates/*']},
     py_modules=[],          # 需要打包的python文件列表
     data_files=[            # 打包时需要打包的数据文件
+        'pytestreport/static/js/capture.js'
         'pytestreport/templates/default.html',
         'pytestreport/static/css/default.css',
         'pytestreport/static/js/default.js',
