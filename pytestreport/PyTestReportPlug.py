@@ -1,25 +1,33 @@
 import os
 import time
 import datetime
+import bisect
+from collections import OrderedDict
+
+from pytestreport.api import make_report
+from pytestreport import HTMLTestRunner
 
 
 def pytest_addoption(parser):
     group = parser.getgroup('terminal reporting')
-    group.addoption('--html', action='store', dest='htmlpath',
-                    metavar='path', default=None,
+    group.addoption('--pytest_report', action='store', dest='pytest_report', metavar='path', default=None,
                     help='create html report file at given path.')
-    group.addoption('--self-contained-html', action='store_true',
-                    help='create a self-contained html file containing all '
-                    'necessary styles, scripts, and images - this means '
-                    'that the report may not render or function where CSP '
-                    'restrictions are in place (see '
-                    'https://developer.mozilla.org/docs/Web/Security/CSP)')
-    group.addoption('--css', action='append', metavar='path', default=[],
+    group.addoption('--pytest_title', action='store', dest='pytest_title', metavar='path', default="PyTestReport",
+                    help='append given css file content to report style file.')
+    group.addoption('--pytest_desc', action='store', dest='pytest_desc', metavar='path', default="",
+                    help='append given css file content to report style file.')
+    group.addoption('--pytest_theme', action='store', dest='pytest_theme', metavar='path', default=None,
+                    help='append given css file content to report style file.')
+    group.addoption('--pytest_stylesheet', action='store', dest='pytest_stylesheet', metavar='path', default=None,
+                    help='append given css file content to report style file.')
+    group.addoption('--pytest_htmltemplate', action='store', dest='pytest_htmltemplate', metavar='path', default=None,
+                    help='append given css file content to report style file.')
+    group.addoption('--pytest_javascript', action='store', dest='pytest_javascript', metavar='path', default=None,
                     help='append given css file content to report style file.')
 
 
 def pytest_configure(config):
-    htmlpath = config.getoption('htmlpath')
+    htmlpath = config.getoption('pytest_report')
     if htmlpath:
         for csspath in config.getoption('css'):
             open(csspath)
@@ -36,30 +44,67 @@ def pytest_unconfigure(config):
         config.pluginmanager.unregister(html)
 
 
+class TestResult:
+    def __init__(self, outcome, report):
+        self.outcome = outcome
+        self.report = report
+
+        # print(outcome)
+        # print(report._to_json())
+
+    def output(self, cid, tid):
+        if self.outcome.startswith('X'):
+            status = 'fail'
+            status_code = 1
+        elif self.outcome == "Passed":
+            status = 'pass'
+            status_code = 0
+        elif self.outcome == "Failed":
+            status = 'fail'
+            status_code = 1
+        elif self.outcome == "Error":
+            status = 'error'
+            status_code = 2
+        elif self.outcome == "Skipped":
+            status = 'skip'
+            status_code = 3
+        else:
+            status = 'pass'
+            status_code = 0
+
+        output = "%s\r\n%s" % (self.outcome, self.report.longrepr) if status != 'pass' else ""
+
+        return {
+            "has_output": output and True or False,
+            "tid": "test%s.%s.%s" % (status, cid, tid),
+            "desc": self.report.nodeid.split("::")[1],
+            "output": output,
+            "status": status,
+            "status_code": status_code
+        }
+
+
 class HTMLReport(object):
 
-    def __init__(self, logfile, config):
-        logfile = os.path.expanduser(os.path.expandvars(logfile))
-        self.logfile = os.path.abspath(logfile)
-        self.test_logs = []
+    def __init__(self, html_file, config):
+        html_file = os.path.expanduser(os.path.expandvars(html_file))
+        self.html_file = os.path.abspath(html_file)
         self.results = []
         self.errors = self.failed = 0
         self.passed = self.skipped = 0
         self.xfailed = self.xpassed = 0
         has_rerun = config.pluginmanager.hasplugin('rerunfailures')
         self.rerun = 0 if has_rerun else None
-        self.self_contained = config.getoption('self_contained_html')
         self.config = config
 
     def _appendrow(self, outcome, report):
-        result = self.TestResult(outcome, report, self.logfile, self.config)
-        index = bisect.bisect_right(self.results, result)
-        self.results.insert(index, result)
-        self.test_logs.insert(index, tbody)
+        result = TestResult(outcome, report)
+        self.results.append(result)
 
     def append_passed(self, report):
         if report.when == 'call':
             if hasattr(report, "wasxfail"):
+                # pytest < 3.0 marked xpasses as failures
                 self.xpassed += 1
                 self._appendrow('XPassed', report)
             else:
@@ -69,12 +114,16 @@ class HTMLReport(object):
     def append_failed(self, report):
         if getattr(report, 'when', None) == "call":
             if hasattr(report, "wasxfail"):
-                # pytest < 3.0 marked xpasses as failures
-                self.xpassed += 1
-                self._appendrow('XPassed', report)
+                self.xfailed += 1
+                self._appendrow('XFailed', report)
             else:
-                self.failed += 1
-                self._appendrow('Failed', report)
+                message = report.longrepr.reprcrash.message
+                if message.startswith('assert'):    # assert Error
+                    self.failed += 1
+                    self._appendrow('Failed', report)
+                else:
+                    self.errors += 1
+                    self._appendrow('Error', report)
         else:
             self.errors += 1
             self._appendrow('Error', report)
@@ -92,51 +141,104 @@ class HTMLReport(object):
         self.rerun += 1
         self._appendrow('Rerun', report)
 
+    def _generate_detail(self):
+        tests = []
+        sorted_result = self.sort_result()
+        for cid, (cls, cls_results) in enumerate(sorted_result, 1):
+            # subtotal for a class
+            np = nf = ne = ns = 0
+            for result in cls_results:
+                if result.outcome == "Passed":  # pass
+                    np += 1
+                elif result.outcome in ["Failed", "XPassed", "XFailed"]:    # fail
+                    nf += 1
+                elif result.outcome == "Error":    # error
+                    ne += 1
+                elif result.outcome == "Skipped":       # skip
+                    ns += 1
+
+            # format class description
+            name = cls
+            doc = ""
+            desc = '%s: %s' % (name, doc) if doc else name
+
+            test = {
+                'summary': {
+                    'desc': desc,
+                    'count': np + nf + ne + ns,
+                    'pass': np,
+                    'fail': nf,
+                    'error': ne,
+                    'skip': ns,
+                    'cid': 'testclass%s' % cid,
+                    'status': (ne and "error") or (nf and "fail") or (ns and "skip") or "pass"
+                }, 'detail': []
+            }
+
+            for tid, result in enumerate(cls_results, 1):
+                test['detail'].append(result.output(cid, tid))
+
+            tests.append(test)
+
+        return tests
+
+    def sort_result(self):
+        rmap = {}
+        for result in self.results:
+            cls_path = result.report.nodeid.split("::")[0]
+            cls = cls_path.split("/")[-1]
+            rmap.setdefault(cls, []).append(result)
+        return rmap.items()
+
     def _generate_report(self, session):
-        suite_stop_time = time.time()
-        suite_time_delta = suite_stop_time - self.suite_start_time
-        numtests = self.passed + self.failed + self.xpassed + self.xfailed
-        generated = datetime.datetime.now()
+        suite_stop_time = datetime.datetime.now()
+        duration = (suite_stop_time - self.suite_start_time).total_seconds()
+        count = self.passed + self.failed + self.xpassed + self.xfailed + self.skipped + self.errors
         environment = self._generate_environment(session.config)
+        tests = self._generate_detail()
+
+        report_content = {
+            "generator": "PyTestReport %s" % HTMLTestRunner.__version__,
+            "title": "%s" % self.config.getoption('pytest_title'),
+            "description": "%s" % self.config.getoption('pytest_desc'),
+            "environment": environment,
+            "report_summary": {
+                "start_time": self.suite_start_time.strftime('%Y-%m-%d %H:%M:%S'),
+                "duration": duration,
+                "suite_count": len(tests),
+                "status": {
+                    "pass": self.passed,
+                    "fail": self.failed + self.xfailed + self.xpassed,
+                    "error": self.errors,
+                    "skip": self.skipped,
+                    "count": count
+                }
+            }, "report_detail": {
+                "tests": tests,
+                "count": count,
+                "pass": self.passed,
+                "fail": self.failed + self.xfailed + self.xpassed,
+                "error": self.errors,
+                "skip": self.skipped,
+            }
+        }
+
+        return report_content
 
     def _generate_environment(self, config):
         if not hasattr(config, '_metadata') or config._metadata is None:
             return []
 
-        metadata = config._metadata
-        environment = [html.h2('Environment')]
-        rows = []
+        return config._metadata
 
-        keys = [k for k in metadata.keys()]
-        if not isinstance(metadata, OrderedDict):
-            keys.sort()
-
-        for key in keys:
-            value = metadata[key]
-            if isinstance(value, basestring) and value.startswith('http'):
-                value = html.a(value, href=value, target='_blank')
-            elif isinstance(value, (list, tuple, set)):
-                value = ', '.join((str(i) for i in value))
-            rows.append(html.tr(html.td(key), html.td(value)))
-
-        environment.append(html.table(rows, id='environment'))
-        return environment
-
-    def _save_report(self, report_content):
-        dir_name = os.path.dirname(self.logfile)
-        assets_dir = os.path.join(dir_name, 'assets')
-
+    def _save_report(self, report_content, theme=None, stylesheet=None, htmltemplate=None, javascript=None):
+        dir_name = os.path.dirname(self.html_file)
         if not os.path.exists(dir_name):
             os.makedirs(dir_name)
-        if not self.self_contained and not os.path.exists(assets_dir):
-            os.makedirs(assets_dir)
 
-        with open(self.logfile, 'w', encoding='utf-8') as f:
-            f.write(report_content)
-        if not self.self_contained:
-            style_path = os.path.join(assets_dir, 'style.css')
-            with open(style_path, 'w', encoding='utf-8') as f:
-                f.write(self.style_css)
+        with open(self.html_file, 'wb') as fp:
+            make_report(fp, report_content, theme=theme, stylesheet=stylesheet, htmltemplate=htmltemplate,
+                        javascript=javascript)
 
     def pytest_runtest_logreport(self, report):
         if report.passed:
@@ -153,12 +255,16 @@ class HTMLReport(object):
             self.append_failed(report)
 
     def pytest_sessionstart(self, session):
-        self.suite_start_time = time.time()
+        self.suite_start_time = datetime.datetime.now()
 
     def pytest_sessionfinish(self, session):
         report_data = self._generate_report(session)
-        self._save_report(report_data)
+        theme = self.config.getoption('pytest_theme')
+        stylesheet = self.config.getoption('pytest_stylesheet')
+        htmltemplate = self.config.getoption('pytest_htmltemplate')
+        javascript = self.config.getoption('pytest_javascript')
+        self._save_report(report_data, theme, stylesheet, htmltemplate, javascript)
 
     def pytest_terminal_summary(self, terminalreporter):
         terminalreporter.write_sep('-', 'generated html file: {0}'.format(
-            self.logfile))
+            self.html_file))

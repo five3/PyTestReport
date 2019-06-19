@@ -1,8 +1,8 @@
 <!doctype html>
 <html lang="en">
     <head>
-        <title>默认主题</title>
-        <meta name="generator" content="PyTestReport 0.1.6"/>
+        <title>PyTestReport Sample</title>
+        <meta name="generator" content="PyTestReport 0.1.3"/>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 
         <!-- Required meta tags -->
@@ -15,10 +15,10 @@
         <link href="https://cdn.bootcss.com/Chart.js/2.8.0-rc.1/Chart.min.css" rel="stylesheet">
         <style type="text/css" media="screen">
             
-body        { font-family: verdana, arial, helvetica, sans-serif; font-size: 80%; color: #888888; }
+body        { font-family: verdana, arial, helvetica, sans-serif; font-size: 80%; }
 table       { font-size: 100%; }
-pre         { color: #888888; }
-p           { margin: 20px 0; }
+pre         { }
+
 /* -- heading ---------------------------------------------------------------------- */
 .heading {
     margin: 10px;
@@ -41,55 +41,41 @@ a.popup_link:hover {
     top: 0px;
     /*border: solid #627173 1px; */
     padding: 10px;
-    background-color: #F9F9F9;
+    background-color: #E6E6D6;
     font-family: "Lucida Console", "Courier New", Courier, monospace;
     text-align: left;
     font-size: 8pt;
-    width: 100%;
+    width: 500px;
 }
 
 /* -- report ------------------------------------------------------------------------ */
-tr {
-    height: 30px;
-    font-size: 14px;
-    text-align: center;
-}
 #show_detail_line {
     margin-top: 3ex;
     margin-bottom: 1ex;
 }
 #result_table {
+    width: 80%;
+    border-collapse: collapse;
+    border: 1px solid #4682B4;
 }
 #header_row {
     font-weight: bold;
-    color: #888888;
-    background-color: #e4ecf3;
-    font-size: 16px;
-    height: 35px;
+    color: white;
+    background-color: #4682B4;
 }
 #result_table td {
-    border: 1px solid #b9b4b4a1;
+    border: 1px solid #a09d9d;
     padding: 2px;
-}
-.middle-col {
-    border-left: 1px solid #d4cfcf8f;
-    border-right: 1px solid #d4cfcf8f;
-}
-.total-area {
-    width: 100%;
-    height: 50%;
-    text-align: center;
-    padding: 15px;
 }
 #total_row  { font-weight: bold; }
 .passClass  { background-color: #00ff3733; }
-.failClass  { background-color: #eab2b73d; }
-.errorClass { background-color: #a3c8ec2e; }
+.failClass  { background-color: #f5091f3d; }
+.errorClass { background-color: #0662bb2e; }
 .skipClass { background-color: #40403f38; }
-.passCase   { color: #28a745b0; }
-.failCase   { color: #dc354596; font-weight: bold; }
-.errorCase  { color: #0c6cff91; font-weight: bold; }
-.skipCase  { color: #40403f9e; }
+.passCase   { color: #28a745; }
+.failCase   { color: #dc3545; font-weight: bold; }
+.errorCase  { color: #0c6cff; font-weight: bold; }
+.skipCase  { color: #40403f; }
 .hiddenRow  { display: none; }
 .testcase   { margin-left: 2em; }
 
@@ -97,13 +83,7 @@ tr {
 #ending {
     min-height: 30px;
 }
-.github {
-    height: 135px;
-    width: 135px;
-    top: 0;
-    right: 0;
-    position: absolute;
-}
+
         </style>
 
         <script src="https://cdn.bootcss.com/Chart.js/2.8.0-rc.1/Chart.min.js"></script>
@@ -111,22 +91,19 @@ tr {
     <body>
     <div class="container-fluid">
         <div class="row">
-            <div class="col" style="height: 20px;">
-                <a href="https://github.com/five3/PyTestReport" class="github">
-                    <img style="position: absolute; top: 0; right: 0; border: 0;" src="https://github.com/five3/testqa/blob/master/images/forkme.png?raw=true" alt="Fork me on GitHub" class="github">
-                </a>
+            <div class="col">
+                <div class='heading'>
+                </div>
             </div>
         </div>
         <div class="row">
-            <div class="col-4">
+            <div class="col-5">
                 <div class='heading'>
-                    <h2>默认主题</h2>
-                    
-                        <p class='description'>默认主题描述</p>
+                    <h2>PyTestReport Sample</h2><hr/>
                     
                     <div>
-                        <p class='attribute'><strong>开始时间:</strong> 2019-06-08 00:00:52</p>
-                        <p class='attribute'><strong>执行耗时:</strong> 0:00:00.002000</p>
+                        <p class='attribute'><strong>开始时间:</strong> 2019-05-12 21:30:05</p>
+                        <p class='attribute'><strong>执行耗时:</strong> 0:00:00.003001</p>
                         <p class='attribute'><strong>状态:</strong>
                             <span class="badge badge-success" style="background-color: rgb(0 255 127);">&nbsp;通过: 2&nbsp;</span>
                             <span class="badge badge-danger" style="background-color: rgb(255, 99, 132);">&nbsp;失败：2&nbsp;</span>
@@ -136,18 +113,8 @@ tr {
                     </div>
                 </div>
             </div>
-            <div class="col-4 middle-col">
-                <div class="total-area">
-                    <h1>8</h1>
-                    <div>用例总数</div>
-                </div>
-                <div class="total-area">
-                    <h1>8</h1>
-                    <div>套件总数</div>
-                </div>
-            </div>
-            <div class="col-4">
-                <div style="width: 50%;">
+            <div class="col">
+                <div style="width: 30%;">
                     <canvas id="chart-area" width="200" height="200"></canvas>
                 </div>
             </div>
@@ -168,7 +135,7 @@ tr {
 
         <div class="row">
             <div class="col">
-                <table id='result_table' class="table">
+                <table id='result_table'>
                     <colgroup>
                         <col align='left' />
                         <col align='right' />
@@ -179,7 +146,7 @@ tr {
                         <col align='right' />
                     </colgroup>
                     <tr id='header_row'>
-                        <td style="width: 300px;">测试套件/用例</td>
+                        <td>测试套件/用例</td>
                         <td>用例总数</td>
                         <td>通过</td>
                         <td>失败</td>
@@ -189,7 +156,7 @@ tr {
                     </tr>
                     
                     <tr class='errorClass' type="suite" id="c1">
-                        <td>unittest_Demo.UTest</td>
+                        <td>UTest</td>
                         <td>4</td>
                         <td>1</td>
                         <td>1</td>
@@ -200,7 +167,7 @@ tr {
                         
                             
                                 <tr id='et1.1' cid="c1" class='' type="case">
-                                    <td class='Case'><div class='testcase'>testError</div></td>
+                                    <td class='errorCase'><div class='testcase'>testError</div></td>
                                     <td colspan='6' align='center'>
                                     <!--css div popup start-->
                                     <a class="popup_link errorCase" onfocus='this.blur();' href="javascript:showTestDetail('div_et1.1')" >
@@ -210,10 +177,9 @@ tr {
                                         <a onfocus='this.blur();' onclick="document.getElementById('div_et1.1').style.display = 'none';" >
                                            [x]</a>
                                         </div>
-                                        <pre>
-et1.1:
-Traceback (most recent call last):
-  File "D:\git\PyTestReport\test\unittest_Demo.py", line 19, in testError
+                                        <pre style="text-align: center;">
+et1.1: Traceback (most recent call last):
+  File "D:/git/PyTestReport/test/utDemo.py", line 19, in testError
     1 / 0
 ZeroDivisionError: division by zero
 
@@ -226,7 +192,7 @@ ZeroDivisionError: division by zero
                         
                             
                                 <tr id='ft1.2' cid="c1" class='' type="case">
-                                    <td class='Case'><div class='testcase'>testFalse</div></td>
+                                    <td class='failCase'><div class='testcase'>testFalse</div></td>
                                     <td colspan='6' align='center'>
                                     <!--css div popup start-->
                                     <a class="popup_link failCase" onfocus='this.blur();' href="javascript:showTestDetail('div_ft1.2')" >
@@ -236,10 +202,9 @@ ZeroDivisionError: division by zero
                                         <a onfocus='this.blur();' onclick="document.getElementById('div_ft1.2').style.display = 'none';" >
                                            [x]</a>
                                         </div>
-                                        <pre>
-ft1.2:
-Traceback (most recent call last):
-  File "D:\git\PyTestReport\test\unittest_Demo.py", line 16, in testFalse
+                                        <pre style="text-align: center;">
+ft1.2: Traceback (most recent call last):
+  File "D:/git/PyTestReport/test/utDemo.py", line 16, in testFalse
     self.assertFalse(True)
 AssertionError: True is not false
 
@@ -252,7 +217,7 @@ AssertionError: True is not false
                         
                             
                                 <tr id='st1.3' cid="c1" class='' type="case">
-                                    <td class='Case'><div class='testcase'>testSkip</div></td>
+                                    <td class='skipCase'><div class='testcase'>testSkip</div></td>
                                     <td colspan='6' align='center'>
                                     <!--css div popup start-->
                                     <a class="popup_link skipCase" onfocus='this.blur();' href="javascript:showTestDetail('div_st1.3')" >
@@ -262,9 +227,8 @@ AssertionError: True is not false
                                         <a onfocus='this.blur();' onclick="document.getElementById('div_st1.3').style.display = 'none';" >
                                            [x]</a>
                                         </div>
-                                        <pre>
-st1.3:
-Skip Test
+                                        <pre style="text-align: center;">
+st1.3: Skip Test
                                         </pre>
                                     </div>
                                     <!--css div popup end-->
@@ -281,7 +245,7 @@ Skip Test
                         
                     
                     <tr class='errorClass' type="suite" id="c2">
-                        <td>unittest_Demo.UTestError</td>
+                        <td>UTestError</td>
                         <td>1</td>
                         <td>0</td>
                         <td>0</td>
@@ -292,7 +256,7 @@ Skip Test
                         
                             
                                 <tr id='et2.1' cid="c2" class='' type="case">
-                                    <td class='Case'><div class='testcase'>testError</div></td>
+                                    <td class='errorCase'><div class='testcase'>testError</div></td>
                                     <td colspan='6' align='center'>
                                     <!--css div popup start-->
                                     <a class="popup_link errorCase" onfocus='this.blur();' href="javascript:showTestDetail('div_et2.1')" >
@@ -302,10 +266,9 @@ Skip Test
                                         <a onfocus='this.blur();' onclick="document.getElementById('div_et2.1').style.display = 'none';" >
                                            [x]</a>
                                         </div>
-                                        <pre>
-et2.1:
-Traceback (most recent call last):
-  File "D:\git\PyTestReport\test\unittest_Demo.py", line 38, in testError
+                                        <pre style="text-align: center;">
+et2.1: Traceback (most recent call last):
+  File "D:/git/PyTestReport/test/utDemo.py", line 38, in testError
     1 / 0
 ZeroDivisionError: division by zero
 
@@ -318,7 +281,7 @@ ZeroDivisionError: division by zero
                         
                     
                     <tr class='failClass' type="suite" id="c3">
-                        <td>unittest_Demo.UTestFail</td>
+                        <td>UTestFail</td>
                         <td>1</td>
                         <td>0</td>
                         <td>1</td>
@@ -329,7 +292,7 @@ ZeroDivisionError: division by zero
                         
                             
                                 <tr id='ft3.1' cid="c3" class='' type="case">
-                                    <td class='Case'><div class='testcase'>testFalse</div></td>
+                                    <td class='failCase'><div class='testcase'>testFalse</div></td>
                                     <td colspan='6' align='center'>
                                     <!--css div popup start-->
                                     <a class="popup_link failCase" onfocus='this.blur();' href="javascript:showTestDetail('div_ft3.1')" >
@@ -339,10 +302,9 @@ ZeroDivisionError: division by zero
                                         <a onfocus='this.blur();' onclick="document.getElementById('div_ft3.1').style.display = 'none';" >
                                            [x]</a>
                                         </div>
-                                        <pre>
-ft3.1:
-Traceback (most recent call last):
-  File "D:\git\PyTestReport\test\unittest_Demo.py", line 33, in testFalse
+                                        <pre style="text-align: center;">
+ft3.1: Traceback (most recent call last):
+  File "D:/git/PyTestReport/test/utDemo.py", line 33, in testFalse
     self.assertFalse(True)
 AssertionError: True is not false
 
@@ -355,7 +317,7 @@ AssertionError: True is not false
                         
                     
                     <tr class='passClass' type="suite" id="c4">
-                        <td>unittest_Demo.UTestPass</td>
+                        <td>UTestPass</td>
                         <td>1</td>
                         <td>1</td>
                         <td>0</td>
@@ -373,7 +335,7 @@ AssertionError: True is not false
                         
                     
                     <tr class='skipClass' type="suite" id="c5">
-                        <td>unittest_Demo.UTestSkip</td>
+                        <td>UTestSkip</td>
                         <td>1</td>
                         <td>0</td>
                         <td>0</td>
@@ -384,7 +346,7 @@ AssertionError: True is not false
                         
                             
                                 <tr id='st5.1' cid="c5" class='' type="case">
-                                    <td class='Case'><div class='testcase'>testSkip</div></td>
+                                    <td class='skipCase'><div class='testcase'>testSkip</div></td>
                                     <td colspan='6' align='center'>
                                     <!--css div popup start-->
                                     <a class="popup_link skipCase" onfocus='this.blur();' href="javascript:showTestDetail('div_st5.1')" >
@@ -394,9 +356,8 @@ AssertionError: True is not false
                                         <a onfocus='this.blur();' onclick="document.getElementById('div_st5.1').style.display = 'none';" >
                                            [x]</a>
                                         </div>
-                                        <pre>
-st5.1:
-Skip Test
+                                        <pre style="text-align: center;">
+st5.1: Skip Test
                                         </pre>
                                     </div>
                                     <!--css div popup end-->
@@ -407,7 +368,7 @@ Skip Test
                     
                     <tr id='total_row'>
                         <td>总计</td>
-                        <td>8</td>
+                        <td>6</td>
                         <td>2</td>
                         <td>2</td>
                         <td>2</td>
@@ -420,9 +381,7 @@ Skip Test
 
         <div class="row">
             <div class="col">
-                <div id='ending'>
-
-                </div>
+                <div id='ending'></div>
             </div>
         </div>
         <!-- Optional JavaScript -->

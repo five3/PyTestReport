@@ -52,7 +52,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 __original_author__ = "Wai Yip Tung"
 __update_author__ = "Xiaowu Chen"
-__version__ = "0.1.6"
+__version__ = "0.1.8"
 
 """
 0.1.0:
@@ -345,7 +345,7 @@ class HTMLTestRunner(TemplateMixin):
     def _generate_report_detail(self, result):
         tests = []
         sorted_result = self.sort_result(result.result)
-        for cid, (cls, cls_results) in enumerate(sorted_result):
+        for cid, (cls, cls_results) in enumerate(sorted_result, 1):
             # subtotal for a class
             np = nf = ne = ns = 0
             for n, t, o, e in cls_results:
@@ -374,12 +374,12 @@ class HTMLTestRunner(TemplateMixin):
                     'fail': nf,
                     'error': ne,
                     'skip': ns,
-                    'cid': 'c%s' % (cid + 1),
+                    'cid': 'testclass%s' % cid,
                     'status': (ne and self.STATUS[2]) or (nf and self.STATUS[1]) or (ns and self.STATUS[3]) or self.STATUS[0]
                 }, 'detail': []
             }
 
-            for tid, (n, t, o, e) in enumerate(cls_results):
+            for tid, (n, t, o, e) in enumerate(cls_results, 1):
                 test['detail'].append(self._generate_report_test(cid, tid, n, t, o, e))
 
             tests.append(test)
@@ -396,7 +396,7 @@ class HTMLTestRunner(TemplateMixin):
     def _generate_report_test(self, cid, tid, n, t, o, e):
         # e.g. 'pt1.1', 'ft1.1', etc
         has_output = bool(o or e)
-        tid = self.STATUS[n][0] + 't%s.%s' % (cid + 1, tid + 1)
+        tid = 'test%s.%s.%s' % (self.STATUS[n], cid, tid)
         name = t.id().split('.')[-1]
         doc = t.shortDescription() or ""
         desc = doc and ('%s: %s' % (name, doc)) or name
