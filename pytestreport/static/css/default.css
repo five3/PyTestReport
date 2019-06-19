@@ -54,6 +54,7 @@ tr {
 #result_table td {
     border: 1px solid #b9b4b4a1;
     padding: 2px;
+    word-wrap: break-word;
 }
 .middle-col {
     border-left: 1px solid #d4cfcf8f;
@@ -65,6 +66,7 @@ tr {
     text-align: center;
     padding: 15px;
 }
+.table { table-layout: fixed; }
 #total_row  { font-weight: bold; }
 .passClass  { background-color: #00ff3733; }
 .failClass  { background-color: #eab2b73d; }

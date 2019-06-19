@@ -1,8 +1,8 @@
 <!doctype html>
 <html lang="en">
     <head>
-        <title>{{ title }}</title>
-        <meta name="generator" content="{{ generator }}"/>
+        <title>默认主题</title>
+        <meta name="generator" content="PyTestReport 0.1.4"/>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 
         <!-- Required meta tags -->
@@ -14,7 +14,96 @@
         <!-- Chart CSS -->
         <link href="https://cdn.bootcss.com/Chart.js/2.8.0-rc.1/Chart.min.css" rel="stylesheet">
         <style type="text/css" media="screen">
-            {{ stylesheet }}
+            
+body        { font-family: verdana, arial, helvetica, sans-serif; font-size: 80%; color: #888888; }
+table       { font-size: 100%; }
+pre         { color: #888888; }
+p           { margin: 20px 0; }
+/* -- heading ---------------------------------------------------------------------- */
+.heading {
+    margin: 10px;
+}
+.heading .attribute {
+    margin-top: 1ex;
+    margin-bottom: 0;
+}
+
+/* -- css div popup ------------------------------------------------------------------------ */
+a.popup_link {
+}
+a.popup_link:hover {
+    color: red;
+}
+.popup_window {
+    display: none;
+    position: relative;
+    left: 0px;
+    top: 0px;
+    /*border: solid #627173 1px; */
+    padding: 10px;
+    background-color: #F9F9F9;
+    font-family: "Lucida Console", "Courier New", Courier, monospace;
+    text-align: left;
+    font-size: 8pt;
+    width: 100%;
+}
+
+/* -- report ------------------------------------------------------------------------ */
+tr {
+    height: 30px;
+    font-size: 14px;
+    text-align: center;
+}
+#show_detail_line {
+    margin-top: 3ex;
+    margin-bottom: 1ex;
+}
+#result_table {
+}
+#header_row {
+    font-weight: bold;
+    color: #888888;
+    background-color: #e4ecf3;
+    font-size: 16px;
+    height: 35px;
+}
+#result_table td {
+    border: 1px solid #b9b4b4a1;
+    padding: 2px;
+}
+.middle-col {
+    border-left: 1px solid #d4cfcf8f;
+    border-right: 1px solid #d4cfcf8f;
+}
+.total-area {
+    width: 100%;
+    height: 50%;
+    text-align: center;
+    padding: 15px;
+}
+#total_row  { font-weight: bold; }
+.passClass  { background-color: #00ff3733; }
+.failClass  { background-color: #eab2b73d; }
+.errorClass { background-color: #a3c8ec2e; }
+.skipClass { background-color: #40403f38; }
+.passCase   { color: #28a745b0; }
+.failCase   { color: #dc354596; font-weight: bold; }
+.errorCase  { color: #0c6cff91; font-weight: bold; }
+.skipCase  { color: #40403f9e; }
+.hiddenRow  { display: none; }
+.testcase   { margin-left: 2em; }
+
+/* -- ending ---------------------------------------------------------------------- */
+#ending {
+    min-height: 30px;
+}
+.github {
+    height: 135px;
+    width: 135px;
+    top: 0;
+    right: 0;
+    position: absolute;
+}
         </style>
 
         <script src="https://cdn.bootcss.com/Chart.js/2.8.0-rc.1/Chart.min.js"></script>
@@ -31,29 +120,29 @@
         <div class="row">
             <div class="col-4">
                 <div class='heading'>
-                    <h2>{{ title }}</h2>
-                    {% if description %}
-                        <p class='description'>{{ description }}</p>
-                    {% endif %}
+                    <h2>默认主题</h2>
+                    
+                        <p class='description'>默认主题描述</p>
+                    
                     <div>
-                        <p class='attribute'><strong>开始时间:</strong> {{ report_summary.start_time }}</p>
-                        <p class='attribute'><strong>执行耗时:</strong> {{ report_summary.duration }}</p>
+                        <p class='attribute'><strong>开始时间:</strong> 2019-05-12 23:07:49</p>
+                        <p class='attribute'><strong>执行耗时:</strong> 0:00:00.002000</p>
                         <p class='attribute'><strong>状态:</strong>
-                            <span class="badge badge-success" style="background-color: rgb(0 255 127);">&nbsp;通过: {{ report_summary.status.pass }}&nbsp;</span>
-                            <span class="badge badge-danger" style="background-color: rgb(255, 99, 132);">&nbsp;失败：{{ report_summary.status.fail }}&nbsp;</span>
-                            <span class="badge badge-primary" style="background-color: rgb(54, 162, 235);">&nbsp;错误：{{ report_summary.status.error }}&nbsp;</span>
-                            <span class="badge badge-secondary" style="background-color: rgb(201, 203, 207);">&nbsp;跳过：{{ report_summary.status.skip }}&nbsp;</span>
+                            <span class="badge badge-success" style="background-color: rgb(0 255 127);">&nbsp;通过: 1&nbsp;</span>
+                            <span class="badge badge-danger" style="background-color: rgb(255, 99, 132);">&nbsp;失败：0&nbsp;</span>
+                            <span class="badge badge-primary" style="background-color: rgb(54, 162, 235);">&nbsp;错误：0&nbsp;</span>
+                            <span class="badge badge-secondary" style="background-color: rgb(201, 203, 207);">&nbsp;跳过：0&nbsp;</span>
                         </p>
                     </div>
                 </div>
             </div>
             <div class="col-4 middle-col">
                 <div class="total-area">
-                    <h1>{{ report_detail.count }}</h1>
+                    <h1>1</h1>
                     <div>用例总数</div>
                 </div>
                 <div class="total-area">
-                    <h1>{{ report_summary.suite_count }}</h1>
+                    <h1></h1>
                     <div>套件总数</div>
                 </div>
             </div>
@@ -90,7 +179,7 @@
                         <col align='right' />
                     </colgroup>
                     <tr id='header_row'>
-                        <td style="width: 600px;">测试套件/用例</td>
+                        <td style="width: 300px;">测试套件/用例</td>
                         <td>用例总数</td>
                         <td>通过</td>
                         <td>失败</td>
@@ -98,52 +187,32 @@
                         <td>跳过</td>
                         <td>查看</td>
                     </tr>
-                    {% for test in report_detail.tests %}
-                    <tr class='{{ test.summary.status }}Class' type="suite" id="{{ test.summary.cid }}">
-                        <td>{{ test.summary.desc }}</td>
-                        <td>{{ test.summary.count }}</td>
-                        <td>{{ test.summary.pass }}</td>
-                        <td>{{ test.summary.fail }}</td>
-                        <td>{{ test.summary.error }}</td>
-                        <td>{{ test.summary.skip }}</td>
-                        <td><a href="javascript:showClassDetail('{{ test.summary.cid }}',{{ test.summary.count }})">查看详情</a></td>
+                    
+                    <tr class='passClass' type="suite" id="c1">
+                        <td>utDemo.UTestPass</td>
+                        <td>1</td>
+                        <td>1</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td><a href="javascript:showClassDetail('c1',1)">查看详情</a></td>
                     </tr>
-                        {% for detail in test.detail %}
-                            {% if detail.has_output %}
-                                <tr id='{{ detail.tid }}' cid="{{ test.summary.cid }}" class='{% if detail.status_code==0 %}hiddenRow{% endif %}' type="case">
-                                    <td class='{{ detail.style }}Case'><div class='testcase'>{{ detail.desc }}</div></td>
-                                    <td colspan='6' align='center'>
-                                    <!--css div popup start-->
-                                    <a class="popup_link {{ detail.status }}Case" onfocus='this.blur();' href="javascript:showTestDetail('div_{{ detail.tid }}')" >
-                                        {{ detail.status | upper }}</a>
-                                    <div id='div_{{ detail.tid }}' class="popup_window">
-                                        <div style='text-align: right; color:red;cursor:pointer'>
-                                        <a onfocus='this.blur();' onclick="document.getElementById('div_{{ detail.tid }}').style.display = 'none';" >
-                                           [x]</a>
-                                        </div>
-                                        <pre>
-{{ detail.tid }}:
-{{ detail.output }}
-                                        </pre>
-                                    </div>
-                                    <!--css div popup end-->
-                                    </td>
+                        
+                            
+                                <tr id='pt1.1' cid="c1" class='hiddenRow' type="case">
+                                    <td class='passCase'><div class='testcase'>testTrue</div></td>
+                                    <td class='passCase' colspan='6' align='center'>PASS</td>
                                 </tr>
-                            {% else %}
-                                <tr id='{{ detail.tid }}' cid="{{ test.summary.cid }}" class='{% if detail.status_code==0 %}hiddenRow{% endif %}' type="case">
-                                    <td class='{{ detail.status }}Case'><div class='testcase'>{{ detail.desc }}</div></td>
-                                    <td class='{{ detail.status }}Case' colspan='6' align='center'>{{ detail.status | upper }}</td>
-                                </tr>
-                            {% endif %}
-                        {% endfor %}
-                    {% endfor %}
+                            
+                        
+                    
                     <tr id='total_row'>
                         <td>总计</td>
-                        <td>{{ report_detail.count }}</td>
-                        <td>{{ report_detail.pass }}</td>
-                        <td>{{ report_detail.fail }}</td>
-                        <td>{{ report_detail.error }}</td>
-                        <td>{{ report_detail.skip }}</td>
+                        <td>1</td>
+                        <td>1</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
                         <td>&nbsp;</td>
                     </tr>
                 </table>
@@ -163,7 +232,81 @@
         <script src="https://cdn.bootcss.com/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
         <script src="https://cdn.bootcss.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
         <script language="javascript" type="text/javascript">
-            {{ javascript }}
+            
+output_list = Array();
+/* level - 0:Summary; 1:Failed; 2:Skip; 3:All */
+
+function showCase(level) {
+    trs = document.getElementsByTagName("tr");
+    for (var i = 0; i < trs.length; i++) {
+        tr = trs[i];
+        id = tr.id;
+
+        if (level === 0 && tr.getAttribute('type') === 'case') {
+            tr.className = 'hiddenRow';
+        } else if (level === 1) {
+            if (id.substr(0,2) === 'ft') {
+                tr.className = '';
+            } else if (tr.getAttribute('type') === 'case') {
+                tr.className = 'hiddenRow';
+            }
+        } else if (level === 2) {
+            if (id.substr(0,2) === 'et') {
+                tr.className = '';
+            } else if (tr.getAttribute('type') === 'case') {
+                tr.className = 'hiddenRow';
+            }
+        } else if (level === 3) {
+            if (id.substr(0,2) === 'st') {
+                tr.className = '';
+            } else if (tr.getAttribute('type') === 'case') {
+                tr.className = 'hiddenRow';
+            }
+        } else if (level === 4 && tr.getAttribute('type') === 'case') {
+            tr.className = '';
+        }
+    }
+}
+
+function showClassDetail(cid, count) {
+    var tr_list = document.querySelectorAll('tr[cid='+cid+']');
+    var toHide = 1;
+
+    for (var i = 0; i < count; i++) {
+        if (tr_list[i].className) {
+            toHide = 0;
+        }
+    }
+    for (var i = 0; i < count; i++) {
+        if (toHide) {
+            tr_list[i].className = 'hiddenRow';
+        } else {
+            tr_list[i].className = '';
+        }
+    }
+}
+
+function showTestDetail(div_id){
+    var details_div = document.getElementById(div_id)
+    var displayState = details_div.style.display
+    // alert(displayState)
+    if (displayState != 'block' ) {
+        displayState = 'block'
+        details_div.style.display = 'block'
+    }
+    else {
+        details_div.style.display = 'none'
+    }
+}
+function html_escape(s) {
+    s = s.replace(/&/g,'&amp;');
+    s = s.replace(/</g,'&lt;');
+    s = s.replace(/>/g,'&gt;');
+    return s;
+}
+
+
+
             (function() {
                 window.chartColors = {
                     red: 'rgb(255, 99, 132)',
@@ -179,10 +322,10 @@
                     data: {
                         datasets: [{
                             data: [
-                                {{ report_summary.status.pass }},
-                                {{ report_summary.status.fail }},
-                                {{ report_summary.status.error }},
-                                {{ report_summary.status.skip }},
+                                1,
+                                0,
+                                0,
+                                0,
                             ],
                             backgroundColor: [
                                 window.chartColors.green,

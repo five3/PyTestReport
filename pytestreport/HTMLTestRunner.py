@@ -72,10 +72,10 @@ can be import as lib for un-unittest framework
 can be run and work with command line 
 0.1.6：
 bug hot fix
-0.1.7:
-can be run as web service and work with http post method
 0.1.7：
 support pytest unittest framework
+0.1.7:
+can be run as web service and work with http post method
 0.1.8：
 add beautifulReport theme
 """
