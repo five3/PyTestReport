@@ -1,4 +1,6 @@
 import os
+from subprocess import call
+
 from .HTMLTestRunner import HTMLTestRunner
 from .SendEmail import SendMail
 
@@ -23,7 +25,7 @@ def make_image(html_file, image_file, img_width="1350px"):
     :return:
     """
     js = os.path.join(os.path.dirname(__file__), "static", "js", "capture.js")
-    cmds = ["phantomjs", js, html, image, img_width]
+    cmds = ["phantomjs", js, html_file, image_file, img_width]
     output = call(cmds)
     if output == 0:
         print('make capture success!')
