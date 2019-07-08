@@ -1,3 +1,6 @@
+敢兴趣的可以关注公众号！
+![关注二维码](https://img-blog.csdnimg.cn/20190117103222240.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2ZpdmUz,size_16,color_FFFFFF,t_70)
+
 # PyTestReport
 一个由`HTMLTestRunner`项目为灵感，并基于`HTMLTestRunner`进行二次开发的一个项目。主要在API调用、报告样式、扩展性等方面进行了增强。
 
