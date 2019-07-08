@@ -306,14 +306,17 @@ class HTMLTestRunner(TemplateMixin):
         return output
 
     def generate_data(self, result):
+        report_detail = self._generate_report_detail(result)
+        report_summary = self.get_report_summary(result)
+        report_summary['suite_count'] = report_detail['suite_count']
         return {
             'generator': 'PyTestReport %s' % __version__,
             'title': saxutils.escape(self.title),
             'description': saxutils.escape(self.description),
             'stylesheet': self.get_stylesheet(),
             'javascript': self.get_javascript(),
-            'report_summary': self.get_report_summary(result),
-            'report_detail': self._generate_report_detail(result)
+            'report_summary': report_summary,
+            'report_detail': report_detail
         }
 
     def get_report_summary(self, result):
@@ -330,7 +333,7 @@ class HTMLTestRunner(TemplateMixin):
             'start_time': start_time,
             'duration': duration,
             'status': status,
-            'suite_count': len(result.result)
+            'suite_count': 0
         }
 
     def get_stylesheet(self):
@@ -392,7 +395,8 @@ class HTMLTestRunner(TemplateMixin):
             'pass': str(result.success_count),
             'fail': str(result.failure_count),
             'error': str(result.error_count),
-            'skip': str(result.skip_count)
+            'skip': str(result.skip_count),
+            'suite_count': len(sorted_result)
         }
 
     def _generate_report_test(self, cid, tid, n, t, o, e):
