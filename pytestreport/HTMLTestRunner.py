@@ -315,8 +315,8 @@ class HTMLTestRunner(TemplateMixin):
             'description': saxutils.escape(self.description),
             'stylesheet': self.get_stylesheet(),
             'javascript': self.get_javascript(),
-            'report_summary': report_summary,
-            'report_detail': report_detail
+            'report_detail': report_detail,
+            'report_summary': report_summary
         }
 
     def get_report_summary(self, result):
