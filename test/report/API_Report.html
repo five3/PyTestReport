@@ -1,8 +1,8 @@
 <!doctype html>
 <html lang="en">
     <head>
-        <title>PyTestReport</title>
-        <meta name="generator" content="PyTestReport 0.1.6"/>
+        <title>默认主题</title>
+        <meta name="generator" content="PyTestReport 0.1.4"/>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 
         <!-- Required meta tags -->
@@ -70,6 +70,7 @@ tr {
 #result_table td {
     border: 1px solid #b9b4b4a1;
     padding: 2px;
+    word-wrap: break-word;
 }
 .middle-col {
     border-left: 1px solid #d4cfcf8f;
@@ -81,6 +82,7 @@ tr {
     text-align: center;
     padding: 15px;
 }
+.table { table-layout: fixed; }
 #total_row  { font-weight: bold; }
 .passClass  { background-color: #00ff3733; }
 .failClass  { background-color: #eab2b73d; }
@@ -120,27 +122,29 @@ tr {
         <div class="row">
             <div class="col-4">
                 <div class='heading'>
-                    <h2>PyTestReport</h2>
+                    <h2>默认主题</h2>
+                    
+                        <p class='description'>默认主题描述</p>
                     
                     <div>
-                        <p class='attribute'><strong>开始时间:</strong> 2019-06-08 16:47:03</p>
-                        <p class='attribute'><strong>执行耗时:</strong> 0.148008</p>
+                        <p class='attribute'><strong>开始时间:</strong> 2019-05-12 23:07:49</p>
+                        <p class='attribute'><strong>执行耗时:</strong> 0:00:00.002000</p>
                         <p class='attribute'><strong>状态:</strong>
                             <span class="badge badge-success" style="background-color: rgb(0 255 127);">&nbsp;通过: 1&nbsp;</span>
-                            <span class="badge badge-danger" style="background-color: rgb(255, 99, 132);">&nbsp;失败：3&nbsp;</span>
-                            <span class="badge badge-primary" style="background-color: rgb(54, 162, 235);">&nbsp;错误：1&nbsp;</span>
-                            <span class="badge badge-secondary" style="background-color: rgb(201, 203, 207);">&nbsp;跳过：1&nbsp;</span>
+                            <span class="badge badge-danger" style="background-color: rgb(255, 99, 132);">&nbsp;失败：0&nbsp;</span>
+                            <span class="badge badge-primary" style="background-color: rgb(54, 162, 235);">&nbsp;错误：0&nbsp;</span>
+                            <span class="badge badge-secondary" style="background-color: rgb(201, 203, 207);">&nbsp;跳过：0&nbsp;</span>
                         </p>
                     </div>
                 </div>
             </div>
             <div class="col-4 middle-col">
                 <div class="total-area">
-                    <h1>6</h1>
+                    <h1>1</h1>
                     <div>用例总数</div>
                 </div>
                 <div class="total-area">
-                    <h1>1</h1>
+                    <h1></h1>
                     <div>套件总数</div>
                 </div>
             </div>
@@ -177,7 +181,7 @@ tr {
                         <col align='right' />
                     </colgroup>
                     <tr id='header_row'>
-                        <td style="width: 300px;">测试套件/用例</td>
+                        <td style="width: 550px;">测试套件/用例</td>
                         <td>用例总数</td>
                         <td>通过</td>
                         <td>失败</td>
@@ -186,159 +190,31 @@ tr {
                         <td>查看</td>
                     </tr>
                     
-                    <tr class='errorClass' type="suite" id="testclass1">
-                        <td>pytest_Demo.py</td>
-                        <td>6</td>
-                        <td>1</td>
-                        <td>3</td>
+                    <tr class='passClass' type="suite" id="c1">
+                        <td>utDemo.UTestPass</td>
                         <td>1</td>
                         <td>1</td>
-                        <td><a href="javascript:showClassDetail('testclass1',6)">查看详情</a></td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td><a href="javascript:showClassDetail('c1',1)">查看详情</a></td>
                     </tr>
                         
                             
-                                <tr id='testpass.1.1' cid="testclass1" class='hiddenRow' type="case">
+                                <tr id='pt1.1' cid="c1" class='hiddenRow' type="case">
                                     <td class='passCase'><div class='testcase'>testTrue</div></td>
                                     <td class='passCase' colspan='6' align='center'>PASS</td>
-                                </tr>
-                            
-                        
-                            
-                                <tr id='testfail.1.2' cid="testclass1" class='' type="case">
-                                    <td class='failCase'><div class='testcase'>testFalse</div></td>
-                                    <td colspan='6' align='center'>
-                                    <!--css div popup start-->
-                                    <a class="popup_link failCase" onfocus='this.blur();' href="javascript:showTestDetail('div_testfail.1.2')" >
-                                        FAIL</a>
-                                    <div id='div_testfail.1.2' class="popup_window">
-                                        <div style='text-align: right; color:red;cursor:pointer'>
-                                        <a onfocus='this.blur();' onclick="document.getElementById('div_testfail.1.2').style.display = 'none';" >
-                                           [x]</a>
-                                        </div>
-                                        <pre>
-testfail.1.2:
-Failed
-def testFalse():
->       assert False
-E       assert False
-
-pytest_Demo.py:9: AssertionError
-                                        </pre>
-                                    </div>
-                                    <!--css div popup end-->
-                                    </td>
-                                </tr>
-                            
-                        
-                            
-                                <tr id='testerror.1.3' cid="testclass1" class='' type="case">
-                                    <td class='errorCase'><div class='testcase'>testError</div></td>
-                                    <td colspan='6' align='center'>
-                                    <!--css div popup start-->
-                                    <a class="popup_link errorCase" onfocus='this.blur();' href="javascript:showTestDetail('div_testerror.1.3')" >
-                                        ERROR</a>
-                                    <div id='div_testerror.1.3' class="popup_window">
-                                        <div style='text-align: right; color:red;cursor:pointer'>
-                                        <a onfocus='this.blur();' onclick="document.getElementById('div_testerror.1.3').style.display = 'none';" >
-                                           [x]</a>
-                                        </div>
-                                        <pre>
-testerror.1.3:
-Error
-def testError():
->       1 / 0
-E       ZeroDivisionError: division by zero
-
-pytest_Demo.py:13: ZeroDivisionError
-                                        </pre>
-                                    </div>
-                                    <!--css div popup end-->
-                                    </td>
-                                </tr>
-                            
-                        
-                            
-                                <tr id='testskip.1.4' cid="testclass1" class='' type="case">
-                                    <td class='skipCase'><div class='testcase'>testSkip</div></td>
-                                    <td colspan='6' align='center'>
-                                    <!--css div popup start-->
-                                    <a class="popup_link skipCase" onfocus='this.blur();' href="javascript:showTestDetail('div_testskip.1.4')" >
-                                        SKIP</a>
-                                    <div id='div_testskip.1.4' class="popup_window">
-                                        <div style='text-align: right; color:red;cursor:pointer'>
-                                        <a onfocus='this.blur();' onclick="document.getElementById('div_testskip.1.4').style.display = 'none';" >
-                                           [x]</a>
-                                        </div>
-                                        <pre>
-testskip.1.4:
-Skipped
-('test\\pytest_Demo.py', 15, 'Skipped: misunderstood the API')
-                                        </pre>
-                                    </div>
-                                    <!--css div popup end-->
-                                    </td>
-                                </tr>
-                            
-                        
-                            
-                                <tr id='testfail.1.5' cid="testclass1" class='' type="case">
-                                    <td class='failCase'><div class='testcase'>testXPass</div></td>
-                                    <td colspan='6' align='center'>
-                                    <!--css div popup start-->
-                                    <a class="popup_link failCase" onfocus='this.blur();' href="javascript:showTestDetail('div_testfail.1.5')" >
-                                        FAIL</a>
-                                    <div id='div_testfail.1.5' class="popup_window">
-                                        <div style='text-align: right; color:red;cursor:pointer'>
-                                        <a onfocus='this.blur();' onclick="document.getElementById('div_testfail.1.5').style.display = 'none';" >
-                                           [x]</a>
-                                        </div>
-                                        <pre>
-testfail.1.5:
-XPassed
-None
-                                        </pre>
-                                    </div>
-                                    <!--css div popup end-->
-                                    </td>
-                                </tr>
-                            
-                        
-                            
-                                <tr id='testfail.1.6' cid="testclass1" class='' type="case">
-                                    <td class='failCase'><div class='testcase'>testXFail</div></td>
-                                    <td colspan='6' align='center'>
-                                    <!--css div popup start-->
-                                    <a class="popup_link failCase" onfocus='this.blur();' href="javascript:showTestDetail('div_testfail.1.6')" >
-                                        FAIL</a>
-                                    <div id='div_testfail.1.6' class="popup_window">
-                                        <div style='text-align: right; color:red;cursor:pointer'>
-                                        <a onfocus='this.blur();' onclick="document.getElementById('div_testfail.1.6').style.display = 'none';" >
-                                           [x]</a>
-                                        </div>
-                                        <pre>
-testfail.1.6:
-XFailed
-@pytest.mark.xfail(reason="Xfail")
-    def testXFail():
->       assert False
-E       assert False
-
-pytest_Demo.py:28: AssertionError
-                                        </pre>
-                                    </div>
-                                    <!--css div popup end-->
-                                    </td>
                                 </tr>
                             
                         
                     
                     <tr id='total_row'>
                         <td>总计</td>
-                        <td>6</td>
-                        <td>1</td>
-                        <td>3</td>
                         <td>1</td>
                         <td>1</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
                         <td>&nbsp;</td>
                     </tr>
                 </table>
@@ -446,9 +322,9 @@ function html_escape(s) {
                         datasets: [{
                             data: [
                                 1,
-                                3,
-                                1,
-                                1,
+                                0,
+                                0,
+                                0,
                             ],
                             backgroundColor: [
                                 window.chartColors.green,

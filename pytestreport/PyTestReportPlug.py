@@ -29,8 +29,8 @@ def pytest_addoption(parser):
 def pytest_configure(config):
     htmlpath = config.getoption('pytest_report')
     if htmlpath:
-        for csspath in config.getoption('css'):
-            open(csspath)
+        # for csspath in config.getoption('css'):
+        #     open(csspath)
         if not hasattr(config, 'slaveinput'):
             # prevent opening htmlpath on slave nodes (xdist)
             config._html = HTMLReport(htmlpath, config)
@@ -237,8 +237,14 @@ class HTMLReport(object):
             os.makedirs(dir_name)
 
         with open(self.html_file, 'wb') as fp:
-            make_report(fp, report_content, theme=theme, stylesheet=stylesheet, htmltemplate=htmltemplate,
-                        javascript=javascript)
+            # make_report(fp, report_content, theme=theme, stylesheet=stylesheet, htmltemplate=htmltemplate,
+            #             javascript=javascript)
+
+            test_runner = HTMLTestRunner.HTMLTestRunner(fp, theme=theme, stylesheet=stylesheet,
+                                         htmltemplate=htmltemplate, javascript=javascript)
+            report_content['stylesheet'] = test_runner.get_stylesheet()
+            report_content['javascript'] = test_runner.get_javascript()
+            return test_runner.generate_report(report_content)
 
     def pytest_runtest_logreport(self, report):
         if report.passed:

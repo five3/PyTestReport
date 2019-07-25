@@ -29,4 +29,4 @@ def testXFail():
 
 
 if __name__ == '__main__':
-    pytest.main(["-s", "pytest_Demo.py", "--pytest_report", "Pytest_Report.html"])
+    pytest.main(["-s", "pytest_Demo.py", "--pytest_report", "report/Pytest_Report.html"])

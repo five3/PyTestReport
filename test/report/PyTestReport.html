@@ -1,8 +1,8 @@
 <!doctype html>
 <html lang="en">
     <head>
-        <title>默认主题</title>
-        <meta name="generator" content="PyTestReport 0.1.6"/>
+        <title>PyTestReport Sample</title>
+        <meta name="generator" content="PyTestReport 0.1.9"/>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 
         <!-- Required meta tags -->
@@ -70,6 +70,7 @@ tr {
 #result_table td {
     border: 1px solid #b9b4b4a1;
     padding: 2px;
+    word-wrap: break-word;
 }
 .middle-col {
     border-left: 1px solid #d4cfcf8f;
@@ -81,6 +82,7 @@ tr {
     text-align: center;
     padding: 15px;
 }
+.table { table-layout: fixed; }
 #total_row  { font-weight: bold; }
 .passClass  { background-color: #00ff3733; }
 .failClass  { background-color: #eab2b73d; }
@@ -120,13 +122,11 @@ tr {
         <div class="row">
             <div class="col-4">
                 <div class='heading'>
-                    <h2>默认主题</h2>
-                    
-                        <p class='description'>默认主题描述</p>
+                    <h2>PyTestReport Sample</h2>
                     
                     <div>
-                        <p class='attribute'><strong>开始时间:</strong> 2019-06-08 00:00:52</p>
-                        <p class='attribute'><strong>执行耗时:</strong> 0:00:00.002000</p>
+                        <p class='attribute'><strong>开始时间:</strong> 2019-07-08 11:23:31</p>
+                        <p class='attribute'><strong>执行耗时:</strong> 0:00:00.000997</p>
                         <p class='attribute'><strong>状态:</strong>
                             <span class="badge badge-success" style="background-color: rgb(0 255 127);">&nbsp;通过: 2&nbsp;</span>
                             <span class="badge badge-danger" style="background-color: rgb(255, 99, 132);">&nbsp;失败：2&nbsp;</span>
@@ -142,7 +142,7 @@ tr {
                     <div>用例总数</div>
                 </div>
                 <div class="total-area">
-                    <h1>8</h1>
+                    <h1>5</h1>
                     <div>套件总数</div>
                 </div>
             </div>
@@ -179,7 +179,7 @@ tr {
                         <col align='right' />
                     </colgroup>
                     <tr id='header_row'>
-                        <td style="width: 300px;">测试套件/用例</td>
+                        <td style="width: 550px;">测试套件/用例</td>
                         <td>用例总数</td>
                         <td>通过</td>
                         <td>失败</td>
@@ -188,32 +188,32 @@ tr {
                         <td>查看</td>
                     </tr>
                     
-                    <tr class='errorClass' type="suite" id="c1">
-                        <td>unittest_Demo.UTest</td>
+                    <tr class='errorClass' type="suite" id="testclass1">
+                        <td>UTest</td>
                         <td>4</td>
                         <td>1</td>
                         <td>1</td>
                         <td>1</td>
                         <td>1</td>
-                        <td><a href="javascript:showClassDetail('c1',4)">查看详情</a></td>
+                        <td><a href="javascript:showClassDetail('testclass1',4)">查看详情</a></td>
                     </tr>
                         
                             
-                                <tr id='et1.1' cid="c1" class='' type="case">
-                                    <td class='Case'><div class='testcase'>testError</div></td>
+                                <tr id='testerror.1.1' cid="testclass1" class='' type="case">
+                                    <td class='errorCase'><div class='testcase'>testError</div></td>
                                     <td colspan='6' align='center'>
                                     <!--css div popup start-->
-                                    <a class="popup_link errorCase" onfocus='this.blur();' href="javascript:showTestDetail('div_et1.1')" >
+                                    <a class="popup_link errorCase" onfocus='this.blur();' href="javascript:showTestDetail('div_testerror.1.1')" >
                                         ERROR</a>
-                                    <div id='div_et1.1' class="popup_window">
+                                    <div id='div_testerror.1.1' class="popup_window">
                                         <div style='text-align: right; color:red;cursor:pointer'>
-                                        <a onfocus='this.blur();' onclick="document.getElementById('div_et1.1').style.display = 'none';" >
+                                        <a onfocus='this.blur();' onclick="document.getElementById('div_testerror.1.1').style.display = 'none';" >
                                            [x]</a>
                                         </div>
-                                        <pre>
-et1.1:
+                                        <pre style="font-size: 14px;">
+testerror.1.1:
 Traceback (most recent call last):
-  File "D:\git\PyTestReport\test\unittest_Demo.py", line 19, in testError
+  File "D:/git/PyTestReport/test/unittest_Demo.py", line 19, in testError
     1 / 0
 ZeroDivisionError: division by zero
 
@@ -225,21 +225,21 @@ ZeroDivisionError: division by zero
                             
                         
                             
-                                <tr id='ft1.2' cid="c1" class='' type="case">
-                                    <td class='Case'><div class='testcase'>testFalse</div></td>
+                                <tr id='testfail.1.2' cid="testclass1" class='' type="case">
+                                    <td class='failCase'><div class='testcase'>testFalse</div></td>
                                     <td colspan='6' align='center'>
                                     <!--css div popup start-->
-                                    <a class="popup_link failCase" onfocus='this.blur();' href="javascript:showTestDetail('div_ft1.2')" >
+                                    <a class="popup_link failCase" onfocus='this.blur();' href="javascript:showTestDetail('div_testfail.1.2')" >
                                         FAIL</a>
-                                    <div id='div_ft1.2' class="popup_window">
+                                    <div id='div_testfail.1.2' class="popup_window">
                                         <div style='text-align: right; color:red;cursor:pointer'>
-                                        <a onfocus='this.blur();' onclick="document.getElementById('div_ft1.2').style.display = 'none';" >
+                                        <a onfocus='this.blur();' onclick="document.getElementById('div_testfail.1.2').style.display = 'none';" >
                                            [x]</a>
                                         </div>
-                                        <pre>
-ft1.2:
+                                        <pre style="font-size: 14px;">
+testfail.1.2:
 Traceback (most recent call last):
-  File "D:\git\PyTestReport\test\unittest_Demo.py", line 16, in testFalse
+  File "D:/git/PyTestReport/test/unittest_Demo.py", line 16, in testFalse
     self.assertFalse(True)
 AssertionError: True is not false
 
@@ -251,19 +251,19 @@ AssertionError: True is not false
                             
                         
                             
-                                <tr id='st1.3' cid="c1" class='' type="case">
-                                    <td class='Case'><div class='testcase'>testSkip</div></td>
+                                <tr id='testskip.1.3' cid="testclass1" class='' type="case">
+                                    <td class='skipCase'><div class='testcase'>testSkip</div></td>
                                     <td colspan='6' align='center'>
                                     <!--css div popup start-->
-                                    <a class="popup_link skipCase" onfocus='this.blur();' href="javascript:showTestDetail('div_st1.3')" >
+                                    <a class="popup_link skipCase" onfocus='this.blur();' href="javascript:showTestDetail('div_testskip.1.3')" >
                                         SKIP</a>
-                                    <div id='div_st1.3' class="popup_window">
+                                    <div id='div_testskip.1.3' class="popup_window">
                                         <div style='text-align: right; color:red;cursor:pointer'>
-                                        <a onfocus='this.blur();' onclick="document.getElementById('div_st1.3').style.display = 'none';" >
+                                        <a onfocus='this.blur();' onclick="document.getElementById('div_testskip.1.3').style.display = 'none';" >
                                            [x]</a>
                                         </div>
-                                        <pre>
-st1.3:
+                                        <pre style="font-size: 14px;">
+testskip.1.3:
 Skip Test
                                         </pre>
                                     </div>
@@ -273,39 +273,39 @@ Skip Test
                             
                         
                             
-                                <tr id='pt1.4' cid="c1" class='hiddenRow' type="case">
+                                <tr id='testpass.1.4' cid="testclass1" class='hiddenRow' type="case">
                                     <td class='passCase'><div class='testcase'>testTrue</div></td>
                                     <td class='passCase' colspan='6' align='center'>PASS</td>
                                 </tr>
                             
                         
                     
-                    <tr class='errorClass' type="suite" id="c2">
-                        <td>unittest_Demo.UTestError</td>
+                    <tr class='errorClass' type="suite" id="testclass2">
+                        <td>UTestError</td>
                         <td>1</td>
                         <td>0</td>
                         <td>0</td>
                         <td>1</td>
                         <td>0</td>
-                        <td><a href="javascript:showClassDetail('c2',1)">查看详情</a></td>
+                        <td><a href="javascript:showClassDetail('testclass2',1)">查看详情</a></td>
                     </tr>
                         
                             
-                                <tr id='et2.1' cid="c2" class='' type="case">
-                                    <td class='Case'><div class='testcase'>testError</div></td>
+                                <tr id='testerror.2.1' cid="testclass2" class='' type="case">
+                                    <td class='errorCase'><div class='testcase'>testError</div></td>
                                     <td colspan='6' align='center'>
                                     <!--css div popup start-->
-                                    <a class="popup_link errorCase" onfocus='this.blur();' href="javascript:showTestDetail('div_et2.1')" >
+                                    <a class="popup_link errorCase" onfocus='this.blur();' href="javascript:showTestDetail('div_testerror.2.1')" >
                                         ERROR</a>
-                                    <div id='div_et2.1' class="popup_window">
+                                    <div id='div_testerror.2.1' class="popup_window">
                                         <div style='text-align: right; color:red;cursor:pointer'>
-                                        <a onfocus='this.blur();' onclick="document.getElementById('div_et2.1').style.display = 'none';" >
+                                        <a onfocus='this.blur();' onclick="document.getElementById('div_testerror.2.1').style.display = 'none';" >
                                            [x]</a>
                                         </div>
-                                        <pre>
-et2.1:
+                                        <pre style="font-size: 14px;">
+testerror.2.1:
 Traceback (most recent call last):
-  File "D:\git\PyTestReport\test\unittest_Demo.py", line 38, in testError
+  File "D:/git/PyTestReport/test/unittest_Demo.py", line 38, in testError
     1 / 0
 ZeroDivisionError: division by zero
 
@@ -317,32 +317,32 @@ ZeroDivisionError: division by zero
                             
                         
                     
-                    <tr class='failClass' type="suite" id="c3">
-                        <td>unittest_Demo.UTestFail</td>
+                    <tr class='failClass' type="suite" id="testclass3">
+                        <td>UTestFail</td>
                         <td>1</td>
                         <td>0</td>
                         <td>1</td>
                         <td>0</td>
                         <td>0</td>
-                        <td><a href="javascript:showClassDetail('c3',1)">查看详情</a></td>
+                        <td><a href="javascript:showClassDetail('testclass3',1)">查看详情</a></td>
                     </tr>
                         
                             
-                                <tr id='ft3.1' cid="c3" class='' type="case">
-                                    <td class='Case'><div class='testcase'>testFalse</div></td>
+                                <tr id='testfail.3.1' cid="testclass3" class='' type="case">
+                                    <td class='failCase'><div class='testcase'>testFalse</div></td>
                                     <td colspan='6' align='center'>
                                     <!--css div popup start-->
-                                    <a class="popup_link failCase" onfocus='this.blur();' href="javascript:showTestDetail('div_ft3.1')" >
+                                    <a class="popup_link failCase" onfocus='this.blur();' href="javascript:showTestDetail('div_testfail.3.1')" >
                                         FAIL</a>
-                                    <div id='div_ft3.1' class="popup_window">
+                                    <div id='div_testfail.3.1' class="popup_window">
                                         <div style='text-align: right; color:red;cursor:pointer'>
-                                        <a onfocus='this.blur();' onclick="document.getElementById('div_ft3.1').style.display = 'none';" >
+                                        <a onfocus='this.blur();' onclick="document.getElementById('div_testfail.3.1').style.display = 'none';" >
                                            [x]</a>
                                         </div>
-                                        <pre>
-ft3.1:
+                                        <pre style="font-size: 14px;">
+testfail.3.1:
 Traceback (most recent call last):
-  File "D:\git\PyTestReport\test\unittest_Demo.py", line 33, in testFalse
+  File "D:/git/PyTestReport/test/unittest_Demo.py", line 33, in testFalse
     self.assertFalse(True)
 AssertionError: True is not false
 
@@ -354,48 +354,48 @@ AssertionError: True is not false
                             
                         
                     
-                    <tr class='passClass' type="suite" id="c4">
-                        <td>unittest_Demo.UTestPass</td>
+                    <tr class='passClass' type="suite" id="testclass4">
+                        <td>UTestPass</td>
                         <td>1</td>
                         <td>1</td>
                         <td>0</td>
                         <td>0</td>
                         <td>0</td>
-                        <td><a href="javascript:showClassDetail('c4',1)">查看详情</a></td>
+                        <td><a href="javascript:showClassDetail('testclass4',1)">查看详情</a></td>
                     </tr>
                         
                             
-                                <tr id='pt4.1' cid="c4" class='hiddenRow' type="case">
+                                <tr id='testpass.4.1' cid="testclass4" class='hiddenRow' type="case">
                                     <td class='passCase'><div class='testcase'>testTrue</div></td>
                                     <td class='passCase' colspan='6' align='center'>PASS</td>
                                 </tr>
                             
                         
                     
-                    <tr class='skipClass' type="suite" id="c5">
-                        <td>unittest_Demo.UTestSkip</td>
+                    <tr class='skipClass' type="suite" id="testclass5">
+                        <td>UTestSkip</td>
                         <td>1</td>
                         <td>0</td>
                         <td>0</td>
                         <td>0</td>
                         <td>1</td>
-                        <td><a href="javascript:showClassDetail('c5',1)">查看详情</a></td>
+                        <td><a href="javascript:showClassDetail('testclass5',1)">查看详情</a></td>
                     </tr>
                         
                             
-                                <tr id='st5.1' cid="c5" class='' type="case">
-                                    <td class='Case'><div class='testcase'>testSkip</div></td>
+                                <tr id='testskip.5.1' cid="testclass5" class='' type="case">
+                                    <td class='skipCase'><div class='testcase'>testSkip</div></td>
                                     <td colspan='6' align='center'>
                                     <!--css div popup start-->
-                                    <a class="popup_link skipCase" onfocus='this.blur();' href="javascript:showTestDetail('div_st5.1')" >
+                                    <a class="popup_link skipCase" onfocus='this.blur();' href="javascript:showTestDetail('div_testskip.5.1')" >
                                         SKIP</a>
-                                    <div id='div_st5.1' class="popup_window">
+                                    <div id='div_testskip.5.1' class="popup_window">
                                         <div style='text-align: right; color:red;cursor:pointer'>
-                                        <a onfocus='this.blur();' onclick="document.getElementById('div_st5.1').style.display = 'none';" >
+                                        <a onfocus='this.blur();' onclick="document.getElementById('div_testskip.5.1').style.display = 'none';" >
                                            [x]</a>
                                         </div>
-                                        <pre>
-st5.1:
+                                        <pre style="font-size: 14px;">
+testskip.5.1:
 Skip Test
                                         </pre>
                                     </div>
@@ -444,19 +444,19 @@ function showCase(level) {
         if (level === 0 && tr.getAttribute('type') === 'case') {
             tr.className = 'hiddenRow';
         } else if (level === 1) {
-            if (id.substr(0,2) === 'ft') {
+            if (id.indexOf('testfail') === 0) {
                 tr.className = '';
             } else if (tr.getAttribute('type') === 'case') {
                 tr.className = 'hiddenRow';
             }
         } else if (level === 2) {
-            if (id.substr(0,2) === 'et') {
+            if (id.indexOf('testerror') === 0) {
                 tr.className = '';
             } else if (tr.getAttribute('type') === 'case') {
                 tr.className = 'hiddenRow';
             }
         } else if (level === 3) {
-            if (id.substr(0,2) === 'st') {
+            if (id.indexOf('testskip') === 0) {
                 tr.className = '';
             } else if (tr.getAttribute('type') === 'case') {
                 tr.className = 'hiddenRow';
@@ -486,15 +486,12 @@ function showClassDetail(cid, count) {
 }
 
 function showTestDetail(div_id){
-    var details_div = document.getElementById(div_id)
-    var displayState = details_div.style.display
-    // alert(displayState)
-    if (displayState != 'block' ) {
-        displayState = 'block'
-        details_div.style.display = 'block'
-    }
-    else {
-        details_div.style.display = 'none'
+    var details_div = document.getElementById(div_id);
+    var displayState = details_div.style.display;
+    if (displayState !== 'block' ) {
+        details_div.style.display = 'block';
+    } else {
+        details_div.style.display = 'none';
     }
 }
 function html_escape(s) {

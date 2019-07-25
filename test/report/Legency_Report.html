@@ -92,7 +92,7 @@ function showCase(level) {
     for (var i = 0; i < trs.length; i++) {
         tr = trs[i];
         id = tr.id;
-        if (id.substr(0,2) == 'ft') {
+        if (id.indexOf('testfail') === 0) {
             if (level < 1) {
                 tr.className = 'hiddenRow';
             }
@@ -100,7 +100,7 @@ function showCase(level) {
                 tr.className = '';
             }
         }
-        if (id.substr(0,2) == 'pt') {
+        if (id.indexOf('testpass') === 0) {
             if (level > 1) {
                 tr.className = '';
             }
@@ -115,11 +115,10 @@ function showClassDetail(cid, count) {
     var id_list = Array(count);
     var toHide = 1;
     for (var i = 0; i < count; i++) {
-        tid0 = 't' + cid.substr(1) + '.' + (i+1);
-        tid = 'f' + tid0;
+        tid = 'testfail.' + cid.substr(1) + '.' + (i+1);
         tr = document.getElementById(tid);
         if (!tr) {
-            tid = 'p' + tid0;
+            tid = 'testpass.' + cid.substr(1) + '.' + (i+1);
             tr = document.getElementById(tid);
         }
         id_list[i] = tid;
@@ -130,25 +129,22 @@ function showClassDetail(cid, count) {
     for (var i = 0; i < count; i++) {
         tid = id_list[i];
         if (toHide) {
-            document.getElementById('div_'+tid).style.display = 'none'
+            document.getElementById('div_'+tid).style.display = 'none';
             document.getElementById(tid).className = 'hiddenRow';
-        }
-        else {
+        } else {
             document.getElementById(tid).className = '';
         }
     }
 }
 
 function showTestDetail(div_id){
-    var details_div = document.getElementById(div_id)
-    var displayState = details_div.style.display
-    // alert(displayState)
-    if (displayState != 'block' ) {
-        displayState = 'block'
-        details_div.style.display = 'block'
+    var details_div = document.getElementById(div_id);
+    var displayState = details_div.style.display;
+    if (displayState !== 'block' ) {
+        details_div.style.display = 'block';
     }
     else {
-        details_div.style.display = 'none'
+        details_div.style.display = 'none';
     }
 }
 function html_escape(s) {
@@ -179,8 +175,8 @@ function showOutput(id, name) {
 
 <div class='heading'>
     <h1>默认主题</h1>
-    <p class='attribute'><strong>开始时间:</strong> 2019-06-08 00:00:52</p>
-    <p class='attribute'><strong>执行耗时:</strong> 0:00:00.002000</p>
+    <p class='attribute'><strong>开始时间:</strong> 2019-07-25 17:28:52</p>
+    <p class='attribute'><strong>执行耗时:</strong> 0:00:00.001001</p>
     <p class='attribute'><strong>状态:</strong>
         <span class="badge badge-success">&nbsp;通过: 2&nbsp;</span>
         <span class="badge badge-danger">&nbsp;失败：2&nbsp;</span>
@@ -223,23 +219,23 @@ function showOutput(id, name) {
         <td>1</td>
         <td>1</td>
         <td>1</td>
-        <td><a href="javascript:showClassDetail('c1',4)">Detail</a></td>
+        <td><a href="javascript:showClassDetail('testclass1',4)">Detail</a></td>
     </tr>
         
             
-                <tr id='et1.1' class=''>
+                <tr id='testerror.1.1' class=''>
                     <td class='Case'><div class='testcase'>testError</div></td>
                     <td colspan='6' align='center'>
                     <!--css div popup start-->
-                    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_et1.1')" >
+                    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_testerror.1.1')" >
                         error</a>
-                    <div id='div_et1.1' class="popup_window">
+                    <div id='div_testerror.1.1' class="popup_window">
                         <div style='text-align: right; color:red;cursor:pointer'>
-                        <a onfocus='this.blur();' onclick="document.getElementById('div_et1.1').style.display = 'none';" >
+                        <a onfocus='this.blur();' onclick="document.getElementById('div_testerror.1.1').style.display = 'none';" >
                            [x]</a>
                         </div>
                         <pre style="text-align: center;">
-et1.1: Traceback (most recent call last):
+testerror.1.1: Traceback (most recent call last):
   File "D:\git\PyTestReport\test\unittest_Demo.py", line 19, in testError
     1 / 0
 ZeroDivisionError: division by zero
@@ -252,19 +248,19 @@ ZeroDivisionError: division by zero
             
         
             
-                <tr id='ft1.2' class=''>
+                <tr id='testfail.1.2' class=''>
                     <td class='Case'><div class='testcase'>testFalse</div></td>
                     <td colspan='6' align='center'>
                     <!--css div popup start-->
-                    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_ft1.2')" >
+                    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_testfail.1.2')" >
                         fail</a>
-                    <div id='div_ft1.2' class="popup_window">
+                    <div id='div_testfail.1.2' class="popup_window">
                         <div style='text-align: right; color:red;cursor:pointer'>
-                        <a onfocus='this.blur();' onclick="document.getElementById('div_ft1.2').style.display = 'none';" >
+                        <a onfocus='this.blur();' onclick="document.getElementById('div_testfail.1.2').style.display = 'none';" >
                            [x]</a>
                         </div>
                         <pre style="text-align: center;">
-ft1.2: Traceback (most recent call last):
+testfail.1.2: Traceback (most recent call last):
   File "D:\git\PyTestReport\test\unittest_Demo.py", line 16, in testFalse
     self.assertFalse(True)
 AssertionError: True is not false
@@ -277,19 +273,19 @@ AssertionError: True is not false
             
         
             
-                <tr id='st1.3' class=''>
+                <tr id='testskip.1.3' class=''>
                     <td class='Case'><div class='testcase'>testSkip</div></td>
                     <td colspan='6' align='center'>
                     <!--css div popup start-->
-                    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_st1.3')" >
+                    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_testskip.1.3')" >
                         skip</a>
-                    <div id='div_st1.3' class="popup_window">
+                    <div id='div_testskip.1.3' class="popup_window">
                         <div style='text-align: right; color:red;cursor:pointer'>
-                        <a onfocus='this.blur();' onclick="document.getElementById('div_st1.3').style.display = 'none';" >
+                        <a onfocus='this.blur();' onclick="document.getElementById('div_testskip.1.3').style.display = 'none';" >
                            [x]</a>
                         </div>
                         <pre style="text-align: center;">
-st1.3: Skip Test
+testskip.1.3: Skip Test
                         </pre>
                     </div>
                     <!--css div popup end-->
@@ -298,7 +294,7 @@ st1.3: Skip Test
             
         
             
-                <tr id='pt1.4' class=''>
+                <tr id='testpass.1.4' class=''>
                     <td class=''><div class='testcase'>testTrue</div></td>
                     <td colspan='6' align='center'>pass</td>
                 </tr>
@@ -312,23 +308,23 @@ st1.3: Skip Test
         <td>0</td>
         <td>1</td>
         <td>0</td>
-        <td><a href="javascript:showClassDetail('c2',1)">Detail</a></td>
+        <td><a href="javascript:showClassDetail('testclass2',1)">Detail</a></td>
     </tr>
         
             
-                <tr id='et2.1' class=''>
+                <tr id='testerror.2.1' class=''>
                     <td class='Case'><div class='testcase'>testError</div></td>
                     <td colspan='6' align='center'>
                     <!--css div popup start-->
-                    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_et2.1')" >
+                    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_testerror.2.1')" >
                         error</a>
-                    <div id='div_et2.1' class="popup_window">
+                    <div id='div_testerror.2.1' class="popup_window">
                         <div style='text-align: right; color:red;cursor:pointer'>
-                        <a onfocus='this.blur();' onclick="document.getElementById('div_et2.1').style.display = 'none';" >
+                        <a onfocus='this.blur();' onclick="document.getElementById('div_testerror.2.1').style.display = 'none';" >
                            [x]</a>
                         </div>
                         <pre style="text-align: center;">
-et2.1: Traceback (most recent call last):
+testerror.2.1: Traceback (most recent call last):
   File "D:\git\PyTestReport\test\unittest_Demo.py", line 38, in testError
     1 / 0
 ZeroDivisionError: division by zero
@@ -348,23 +344,23 @@ ZeroDivisionError: division by zero
         <td>1</td>
         <td>0</td>
         <td>0</td>
-        <td><a href="javascript:showClassDetail('c3',1)">Detail</a></td>
+        <td><a href="javascript:showClassDetail('testclass3',1)">Detail</a></td>
     </tr>
         
             
-                <tr id='ft3.1' class=''>
+                <tr id='testfail.3.1' class=''>
                     <td class='Case'><div class='testcase'>testFalse</div></td>
                     <td colspan='6' align='center'>
                     <!--css div popup start-->
-                    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_ft3.1')" >
+                    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_testfail.3.1')" >
                         fail</a>
-                    <div id='div_ft3.1' class="popup_window">
+                    <div id='div_testfail.3.1' class="popup_window">
                         <div style='text-align: right; color:red;cursor:pointer'>
-                        <a onfocus='this.blur();' onclick="document.getElementById('div_ft3.1').style.display = 'none';" >
+                        <a onfocus='this.blur();' onclick="document.getElementById('div_testfail.3.1').style.display = 'none';" >
                            [x]</a>
                         </div>
                         <pre style="text-align: center;">
-ft3.1: Traceback (most recent call last):
+testfail.3.1: Traceback (most recent call last):
   File "D:\git\PyTestReport\test\unittest_Demo.py", line 33, in testFalse
     self.assertFalse(True)
 AssertionError: True is not false
@@ -384,11 +380,11 @@ AssertionError: True is not false
         <td>0</td>
         <td>0</td>
         <td>0</td>
-        <td><a href="javascript:showClassDetail('c4',1)">Detail</a></td>
+        <td><a href="javascript:showClassDetail('testclass4',1)">Detail</a></td>
     </tr>
         
             
-                <tr id='pt4.1' class=''>
+                <tr id='testpass.4.1' class=''>
                     <td class=''><div class='testcase'>testTrue</div></td>
                     <td colspan='6' align='center'>pass</td>
                 </tr>
@@ -402,23 +398,23 @@ AssertionError: True is not false
         <td>0</td>
         <td>0</td>
         <td>1</td>
-        <td><a href="javascript:showClassDetail('c5',1)">Detail</a></td>
+        <td><a href="javascript:showClassDetail('testclass5',1)">Detail</a></td>
     </tr>
         
             
-                <tr id='st5.1' class=''>
+                <tr id='testskip.5.1' class=''>
                     <td class='Case'><div class='testcase'>testSkip</div></td>
                     <td colspan='6' align='center'>
                     <!--css div popup start-->
-                    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_st5.1')" >
+                    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_testskip.5.1')" >
                         skip</a>
-                    <div id='div_st5.1' class="popup_window">
+                    <div id='div_testskip.5.1' class="popup_window">
                         <div style='text-align: right; color:red;cursor:pointer'>
-                        <a onfocus='this.blur();' onclick="document.getElementById('div_st5.1').style.display = 'none';" >
+                        <a onfocus='this.blur();' onclick="document.getElementById('div_testskip.5.1').style.display = 'none';" >
                            [x]</a>
                         </div>
                         <pre style="text-align: center;">
-st5.1: Skip Test
+testskip.5.1: Skip Test
                         </pre>
                     </div>
                     <!--css div popup end-->

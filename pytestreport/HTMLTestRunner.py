@@ -52,7 +52,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 __original_author__ = "Wai Yip Tung"
 __update_author__ = "Xiaowu Chen"
-__version__ = "0.1.9.1"
+__version__ = "0.1.9.2"
 
 """
 0.1.0:
@@ -133,6 +133,7 @@ class TemplateMixin(object):
     DIR = os.path.dirname(os.path.abspath(__file__))
     STYLESHEET_DIR = os.path.join(DIR, 'static', 'css')
     JAVASCRIPT_DIR = os.path.join(DIR, 'static', 'js')
+    HTMLTEMPLATE_DIR = os.path.join(DIR, 'templates')
 
     STATUS = {
         0: 'pass',
@@ -344,8 +345,13 @@ class HTMLTestRunner(TemplateMixin):
         with open(os.path.join(self.JAVASCRIPT_DIR, self.javascript), encoding='utf-8') as f:
             return f.read()
 
+    def get_html(self):
+        with open(os.path.join(self.HTMLTEMPLATE_DIR, self.htmltemplate), encoding='utf-8') as f:
+            return f.read()
+
     def get_html_template(self):
-        return env.get_template(self.htmltemplate)
+        html = self.get_html()
+        return env.from_string(html)
 
     def _generate_report_detail(self, result):
         tests = []
@@ -449,7 +455,7 @@ class TestProgram(unittest.TestProgram):
         # we have to instantiate HTMLTestRunner before we know self.verbosity.
         fp = None
         if self.testRunner is None:
-            fp = open('PyTestReport.html', 'wb')
+            fp = open('report/PyTestReport.html', 'wb')
             self.testRunner = HTMLTestRunner(fp, verbosity=self.verbosity)
         unittest.TestProgram.runTests(self)
         if fp:
