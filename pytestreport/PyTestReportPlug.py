@@ -77,7 +77,7 @@ class TestResult:
         return {
             "has_output": output and True or False,
             "tid": "test%s.%s.%s" % (status, cid, tid),
-            "desc": self.report.nodeid.split("::")[1],
+            "desc": self.report.nodeid.split("::")[-1],
             "output": output,
             "status": status,
             "status_code": status_code
@@ -185,8 +185,8 @@ class HTMLReport(object):
     def sort_result(self):
         rmap = {}
         for result in self.results:
-            cls_path = result.report.nodeid.split("::")[0]
-            cls = cls_path.split("/")[-1]
+            cls = result.report.nodeid.split("::")[1]
+            # cls = cls_path.split("/")[-1]
             rmap.setdefault(cls, []).append(result)
         return rmap.items()
 
