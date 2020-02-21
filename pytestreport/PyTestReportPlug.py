@@ -13,17 +13,17 @@ def pytest_addoption(parser):
     group.addoption('--pytest_report', action='store', dest='pytest_report', metavar='path', default=None,
                     help='create html report file at given path.')
     group.addoption('--pytest_title', action='store', dest='pytest_title', metavar='path', default="PyTestReport",
-                    help='append given css file content to report style file.')
+                    help='given title for report.')
     group.addoption('--pytest_desc', action='store', dest='pytest_desc', metavar='path', default="",
-                    help='append given css file content to report style file.')
+                    help='given desc for report..')
     group.addoption('--pytest_theme', action='store', dest='pytest_theme', metavar='path', default=None,
-                    help='append given css file content to report style file.')
+                    help='given theme for report.')
     group.addoption('--pytest_stylesheet', action='store', dest='pytest_stylesheet', metavar='path', default=None,
-                    help='append given css file content to report style file.')
+                    help='given css file path for report.')
     group.addoption('--pytest_htmltemplate', action='store', dest='pytest_htmltemplate', metavar='path', default=None,
-                    help='append given css file content to report style file.')
+                    help='given html file path for report.')
     group.addoption('--pytest_javascript', action='store', dest='pytest_javascript', metavar='path', default=None,
-                    help='append given css file content to report style file.')
+                    help='given js file path for report.')
 
 
 def pytest_configure(config):
