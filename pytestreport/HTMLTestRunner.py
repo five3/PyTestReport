@@ -52,7 +52,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 __original_author__ = "Wai Yip Tung"
 __update_author__ = "Xiaowu Chen"
-__version__ = "0.1.9.3"
+__version__ = "0.2"
 
 """
 0.1.0:
@@ -77,9 +77,7 @@ support pytest unittest framework
 0.1.9:
 fix css bug, and add make_image, send_mail function
 0.2.0
-can be run as web service and work with http post method
-0.1.8：
-add beautifulReport theme
+fix Jinja2 Load package Error
 """
 
 import datetime
