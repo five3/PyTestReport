@@ -52,7 +52,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 __original_author__ = "Wai Yip Tung"
 __update_author__ = "Xiaowu Chen"
-__version__ = "0.2"
+__version__ = "0.2.2"
 
 """
 0.1.0:
