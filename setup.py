@@ -37,7 +37,7 @@ setup(
     ],
     platforms="any",
     install_requires=[      # 需要安装的依赖包
-        'Jinja2=2.10',
+        'Jinja2==2.10',
         'Flask>=1.0.2'
     ],
     scripts=[],             # 安装时复制到PATH路径的脚本文件
